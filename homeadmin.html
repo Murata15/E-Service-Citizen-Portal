@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Jost:ital,wght@0,100..900;1,100..900&family=Kulim+Park:ital,wght@0,200;0,300;0,400;0,600;0,700;1,200;1,300;1,400;1,600;1,700&display=swap" rel="stylesheet">
+        <style>
+            body {
+                margin: 0;
+                font-family: Arial, sans-serif;
+            }
+
+            .topbar {
+                display: flex;
+                align-items: center;
+                justify-content: space-between;
+                background-color: #1B4543;
+                padding: 10px 20px;
+                color: white;
+                font-family: Kulim Park;
+            }
+
+            .logoname{
+                display: flex;
+                align-items: center;
+                gap: 10px;  
+            }
+
+            .logout {
+                color: white;
+                padding: 8px 15px; 
+                text-decoration: none;
+                display: inline-block;
+            }
+
+            .logout:hover {
+                text-decoration: underline;
+                transform: scale(1.25);
+            }
+
+            .banner {
+                position: relative;
+                width: 100%;
+                max-width: 100%;
+            }
+
+            .banner img {
+                width: 100%;
+                height: 100%;
+                display: block;
+            }
+
+            .banner::before {
+                content: "";
+                position: absolute;
+                width: 100%;
+                height: 100%;
+                background-color: rgba(0, 0, 0, 0.5); 
+                z-index: 1;
+            }
+
+            .banner p {
+                position: absolute;
+                bottom: 1px;
+                left: 20px;
+                z-index: 2;
+                color: white;
+                font-family: Jost;
+                font-size: 36px;
+                font-weight: bold;
+                padding: 10px;
+                margin-bottom: 15px;
+            }
+
+            .titleserv{
+                text-align: center;
+                margin-top: 40px;  
+                margin-bottom: 1px; 
+            }
+
+            .titleserv h2 {
+                font-size: 32px;
+                font-family: Jost;
+                font-weight: normal;
+                color: #1B4543;
+            }
+
+            .selectionserv{
+                width: 245px;
+                height: 245px;
+                display: flex;
+                align-items: center;      
+                justify-content: center; 
+                background: #FFFFFF;
+                box-shadow: 4px 4px 4px rgba(0, 0, 0, 0.25);
+                text-align: center;  
+            }
+
+            .selectionserv:hover{
+                cursor: pointer;
+                transform: scale(1.1);
+                background: #f8f8f8;
+            }
+
+            .selectionserv p{
+                font-family: Jost;
+                color: #1B4543;
+                font-size: 25px;
+                margin-top: 5px;
+                margin-bottom: 5px;
+            }
+
+            .servcont {
+                display: flex;
+                justify-content: center; 
+                align-items: center;
+                margin-top: 10px;
+                padding: 10px;
+                flex-wrap: wrap; 
+                gap: 50px; 
+            }
+
+            .bottom-bar {
+                background-color: #1b4c4a; 
+                color: white;
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                padding: 15px;
+                margin-top: 70px;
+                font-family: Kulim Park;
+            }
+
+
+        </style>
+    
+    </head>
+
+     
+<body style="background-color: #EEF5F3;">
+
+  <div class="topbar">
+    <div class="logoname">
+      <img src="serveease logo.png" alt="Logo" width="40" height="40">
+      <span style="font-size: 25px;">ServeEase</span>
+    </div>
+    
+    <div>
+    <a href="" class="logout" style="font-size: 20px;">Log-out</a>
+    </div>
+  </div>
+
+  <div class="banner">
+    <img src="citybanner.png" alt="City">
+    <p>Hello, Admin!</p>
+  </div>
+
+   <div class="titleserv">
+        <h2>SERVICES</h2>
+    </div>
+
+  <div class="servcont">
+    <div class="selectionserv">
+        <div>
+        <img src="permits.png" alt="Permits" width="161" height="161">
+        <p>Permits</p>
+        </div>
+    </div>
+    
+    <div class="selectionserv">
+        <div>
+        <img src="complaint.png" alt="Complaints" width="161" height="161">
+        <p>Complaints</p>
+        </div>
+    </div>
+  </div>
+
+  <footer class="bottom-bar">
+    <div>
+        <p style="font-size: 14px;">For inquiries, contact us:<br>
+        email@gmail.com <br> 63+ 01234567890</p>
+    </div>
+    <div>
+        <p style="font-size: 17px;">BLANK CITY E-SERVICES</p>
+    </div>
+    </footer>
+
+
+</body>
+</html>
