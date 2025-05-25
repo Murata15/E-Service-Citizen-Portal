@@ -1,0 +1,172 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
+.topbar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background-color: #1B4543;
+    margin: 0;
+    padding: 10px 20px;
+    color: white;
+    font-family: Kulim Park;
+}
+
+.buttons {
+    display: flex;
+    gap: 15px;
+}
+
+.buttons a {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 110px;
+    height: 22px;
+    margin-top: 3px;
+    margin-bottom: 3px;
+    background-color: #DAAC64;
+    color: white;
+    font-family: Inter;
+}
+
+.buttons a:hover {
+    background-color: #F3C172;
+}
+
+.logoname {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.logout {
+    color: white;
+    padding: 8px 15px;
+    text-decoration: none;
+    display: inline-block;
+}
+
+.bottom-bar {
+    background-color: #1b4c4a;
+    color: white;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px;
+    margin-top: 70px;
+    font-family: Kulim Park;
+}
+
+
+.bgimage {
+    position: relative;
+    background-image: url(background\ stock\ of\ city.png);
+    background-size: 1800px 912px;
+    background-repeat: no-repeat;
+    background-position: center;
+}
+
+.bgimage::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(27, 69, 67, 0.6);
+    pointer-events: none;
+
+}
+
+.bgimage>* {
+    position: relative;
+    z-index: 2;
+}
+
+.formbox {
+    width: 100%;
+    max-width: 500px;
+    background-color: white;
+    margin: 60px auto 60px;
+    padding: 30px;
+    text-align: center;
+    box-sizing: border-box;
+    border-radius: 10px;
+}
+
+form {
+    width: 100%;
+    text-align: left;
+    font-family: Kulim Park;
+    font-size: 18px;
+}
+
+form p {
+    font-weight: 100px;
+    font-style: italic;
+    font-size: 22px;
+    margin-top: 5px;
+    margin-bottom: 8px;
+}
+
+.formbox h2 {
+    font-weight: bolder;
+    font-family: Kulim Park;
+    font-size: 25px;
+    margin-top: 7px;
+    margin-bottom: 6px;
+}
+
+input[type="text"],
+input[type="date"],
+select,
+textarea {
+    width: 100%;
+    padding: 8px;
+    margin-bottom: 16px;
+    box-sizing: border-box;
+    font-family: Kulim Park;
+    font-size: 17px;
+    border: solid 2px rgb(27, 69, 67, 0.6);
+}
+
+textarea {
+    min-height: 90px;
+    max-height: 90px;
+    min-width: 100%;
+    max-width: 100%;
+}
+
+.regisbutton {
+    display: flex;
+    justify-content: center;
+    margin: 10px auto 10px;
+}
+
+.regisbutton input[type="submit"] {
+    width: 50%;
+    height: 40px;
+    font-family: Jost;
+    font-size: 22px;
+    color: #1B4543;
+    background-color: #F0BE6F;
+    border: none;
+}
+
+.regisbutton input[type="submit"]:hover {
+    cursor: pointer;
+    background-color: #caa15f;
+    color: #edfaf9;
+}
+
+.sectionfield {
+    display: flex;
+    gap: 10px;
+}
+
+.fieldgroup {
+    flex: 1;
+}
