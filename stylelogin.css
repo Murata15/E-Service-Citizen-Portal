@@ -20,6 +20,7 @@
 }
 
 .buttons a {
+    text-decoration: none;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -27,9 +28,10 @@
     height: 22px;
     margin-top: 3px;
     margin-bottom: 3px;
+    padding: 8px 15px;
     background-color: #DAAC64;
     color: white;
-    font-family: Inter;
+    font-family: Jost;
 }
 
 .buttons a:hover {
@@ -40,6 +42,32 @@
     display: flex;
     align-items: center;
     gap: 10px;
+}
+
+.backarrow {
+    position: absolute;
+    top: 100px;
+    left: 40px;
+    color: #F0BE6F;
+    font-size: 24px;
+    text-decoration: none;
+    background-color: #FFFFFF;
+    padding: 8px 12px;
+    border-radius: 10px;
+    z-index: 999;
+    width: 36px;
+    height: 36px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.backarrow i {
+    font-size: 37px;
+}
+
+.backarrow:hover {
+    background-color: #f0eeee;
 }
 
 .bottom-bar {
@@ -53,10 +81,9 @@
     font-family: Kulim Park;
 }
 
-
 .bgimage {
     position: relative;
-    background-image: url(background\ stock\ of\ city.png);
+    background-image: url(/resources/city.png);
     background-size: 1800px 912px;
     background-repeat: no-repeat;
     background-position: center;
@@ -126,6 +153,11 @@ textarea {
     border: solid 2px rgb(27, 69, 67, 0.6);
 }
 
+input[type="date"],
+select {
+    cursor: pointer;
+}
+
 textarea {
     min-height: 90px;
     max-height: 90px;
@@ -152,7 +184,7 @@ textarea {
 .regisbutton input[type="submit"]:hover {
     cursor: pointer;
     background-color: #caa15f;
-    color: #edfaf9;
+    color: #f9fcfb;
 }
 
 .sectionfield {
