@@ -42,13 +42,6 @@
     gap: 10px;
 }
 
-.logout {
-    color: white;
-    padding: 8px 15px;
-    text-decoration: none;
-    display: inline-block;
-}
-
 .bottom-bar {
     background-color: #1b4c4a;
     color: white;
