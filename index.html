@@ -1,17 +1,45 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>E-Service Citizen Portal</title>
-    <link rel="stylesheet" href="style.css">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>E-Service Citizen Portal</title>
+  <link rel="stylesheet" href="style.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Jost:wght@400;600&display=swap" rel="stylesheet" />
 </head>
 <body>
-    <div class="container">
-        <h1>E-Service Citizen Portal</h1>
-        <p>Lorem ipsum dolor [input text description here]</p>
-        <a href="request.html" class="btn">Submit a Service Request</a>
-        <a href="service.html" class="btn">Check Request Status</a>
-    </div>
+  <div class="overlay-bg">
+    <header class="topbar">
+      <div class="logo-container">
+        <img src="resources/serveease logo.png" alt="ServeEase Logo" class="logo" />
+        <span class="brand">ServeEase</span>
+      </div>
+      <div class="auth-links">
+        <a href="signin.html">Sign In</a>
+        <a href="signup.html">Sign Up</a>
+      </div>
+    </header>
+
+    <main class="main-content">
+      <h1 class="portal-title">E-Service Citizen Portal</h1>
+      <p class="portal-subtitle">Your one-stop platform for city services and requests.</p>
+
+      <div class="icon-links">
+        <a href="signin.html">
+          <img src="resources/permits.png" alt="Submit Request" />
+          <span>Submit Request</span>
+        </a>
+        <a href="signin.html">
+          <img src="resources/check status.png" alt="Check Status" />
+          <span>Check Status</span>
+        </a>
+      </div>
+    </main>
+
+    <footer class="footer">
+      <p>APSAY-UMAY CITY E-SERVICES</p>
+      <p>Contact: email@gmail.com | +63 01234567890</p>
+    </footer>
+  </div>
 </body>
 </html>

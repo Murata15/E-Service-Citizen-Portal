@@ -1,87 +1,87 @@
 <!DOCTYPE html>
-<html>
-
-    <head>
-        <title>Sign-Up</title>
-        <link rel="stylesheet" href="stylesign.css">
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
-        <link rel="preconnect" href="https://fonts.googleapis.com">
-        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-        <link href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Jost:ital,wght@0,100..900;1,100..900&family=Kulim+Park:ital,wght@0,200;0,300;0,400;0,600;0,700;1,200;1,300;1,400;1,600;1,700&display=swap" rel="stylesheet">
-    </head>
-
-    <body class="bgimage">
-        <div class="topbar">
-            <div class="logoname">
-                <img src="/resources/serveease logo.png" alt="Logo" width="40" height="40">
-                <span style="font-size: 25px;">ServeEase</span>
-            </div>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>Sign Up - ServeEase</title>
+    <link rel="stylesheet" href="stylesign.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Jost:wght@400;600&display=swap" rel="stylesheet">
+</head>
+<body class="bgimage">
     
-            <div class="buttons">
-                <a href="" class="texts" style="font-size: 20px;">Home</a>
-                <a href="signin.html" class="texts" style="font-size: 20px;">Sign-In</a>
-            </div>
-
-             <a href="" class="backarrow"><i class="fas fa-arrow-left"></i></a>
+    <header class="topbar">
+        <div class="logoname">
+            <img src="/resources/serveease logo.png" alt="Logo" width="40" height="40">
+            <span class="brand">ServeEase</span>
         </div>
 
-       
+        <nav class="buttons">
+            <a href="index.html" class="texts">Home</a>
+            <a href="signin.html" class="texts">Sign In</a>
+        </nav>
 
-            <div class="formbox">
-                <h2>Sign-Up</h2>
-            
-                <form>
-                    <label for="email">Email</label><br>
-                    <input type="text" id="email" name="email" placeholder="Enter email" required><br>
-                    <label for="password">Password</label><br>
-                    <input type="text" id="password" name="password" placeholder="Enter password" required><br>
-                    <p>Personal Information</p>
-                    <div class="sectionfield">
-                        <div class="fieldgroup">
-                            <label for="firstName">First Name</label><br>
-                            <input type="text" id="firstName" name="firstName" placeholder="First Name" required><br>
-                        </div>
-                        <div class="fieldgroup">
-                            <label for="lastName">Last Name</label><br>
-                            <input type="text" id="lastName" name="lastName" placeholder="Last Name" required><br>
-                        </div>
-                    </div>
-                    <label for="address">Address</label><br>
-                    <textarea id="address" name="address" rows="4" cols="30" placeholder="Address" required></textarea><br>
-                    <label for="contactNumber">Contact Number</label><br>
-                    <input type="text" id="contactNumber" name="contactNumber" placeholder="Contact Number" required><br>
+        <a href="index.html" class="backarrow"><i class="fas fa-arrow-left"></i></a>
+    </header>
 
-                    <div class="sectionfield">
-                        <div class="fieldgroup">
-                            <label for="dateofBirth">Date of Birth</label><br>
-                            <input type="date" id="dateofBirth" name="dateofBirth" required>
-                        </div>
-                        <div class="fieldgroup">
-                            <label for="sex">Sex</label><br>
-                            <select name="sex" id="sex" required>
-                                <option value="Female">Female</option>
-                                <option value="Male">Male</option>
-                            </select>
-                        </div>
-                    </div>
-                    <div class="regisbutton">
-                        <input type="submit" value="Register">
-                    </div>
-                </form> 
-            
+    <main class="formbox">
+        <h2>Sign Up</h2>
+        <form>
+            <label for="email">Email</label>
+            <input type="text" id="email" name="email" placeholder="Enter your email" required>
+
+            <label for="password">Password</label>
+            <input type="password" id="password" name="password" placeholder="Enter a password" required>
+
+            <p class="section-label">Personal Information</p>
+
+            <div class="sectionfield">
+                <div class="fieldgroup">
+                    <label for="firstName">First Name</label>
+                    <input type="text" id="firstName" name="firstName" placeholder="First Name" required>
+                </div>
+                <div class="fieldgroup">
+                    <label for="lastName">Last Name</label>
+                    <input type="text" id="lastName" name="lastName" placeholder="Last Name" required>
+                </div>
             </div>
-        
 
-        <footer class="bottom-bar">
-            <div>
-                <p style="font-size: 14px;">For inquiries, contact us:<br>
-                email@gmail.com <br> 63+ 01234567890</p>
+            <label for="address">Address</label>
+            <textarea id="address" name="address" rows="3" placeholder="Enter your address" required></textarea>
+
+            <label for="contactNumber">Contact Number</label>
+            <input type="text" id="contactNumber" name="contactNumber" placeholder="Enter your number" required>
+
+            <div class="sectionfield">
+                <div class="fieldgroup">
+                    <label for="dateofBirth">Date of Birth</label>
+                    <input type="date" id="dateofBirth" name="dateofBirth" required>
+                </div>
+                <div class="fieldgroup">
+                    <label for="sex">Sex</label>
+                    <select name="sex" id="sex" required>
+                        <option value="" disabled selected>Select</option>
+                        <option value="Female">Female</option>
+                        <option value="Male">Male</option>
+                    </select>
+                </div>
             </div>
-            <div>
-                <p style="font-size: 17px;">BLANK CITY E-SERVICES</p>
+
+            <div class="regisbutton">
+                <input type="submit" value="Register">
             </div>
-        </footer>
+        </form>
+    </main>
 
-    </body>
+    <footer class="bottom-bar">
+        <div>
+            <p>For inquiries, contact us:<br>
+            email@gmail.com<br>+63 01234567890</p>
+        </div>
+        <div>
+            <p>BLANK CITY E-SERVICES</p>
+        </div>
+    </footer>
 
+</body>
 </html>

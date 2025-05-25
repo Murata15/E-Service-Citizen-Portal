@@ -1,41 +1,34 @@
+/* stylesign.css */
+
+:root {
+    --primary: #1B4543;
+    --accent: #F0BE6F;
+    --background: #B3D0C6;
+    --white: #ffffff;
+}
+
 * {
     margin: 0;
     padding: 0;
+    box-sizing: border-box;
+    font-family: 'Jost', sans-serif;
+}
+
+body.bgimage {
+    background-color: var(--background);
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    justify-content: space-between;
 }
 
 .topbar {
     display: flex;
-    align-items: center;
     justify-content: space-between;
-    background-color: #1B4543;
-    margin: 0;
-    padding: 10px 20px;
-    color: white;
-    font-family: Kulim Park;
-}
-
-.buttons {
-    display: flex;
-    gap: 15px;
-}
-
-.buttons a {
-    text-decoration: none;
-    display: flex;
     align-items: center;
-    justify-content: center;
-    width: 110px;
-    height: 22px;
-    margin-top: 3px;
-    margin-bottom: 3px;
-    padding: 8px 15px;
-    background-color: #DAAC64;
-    color: white;
-    font-family: Jost;
-}
-
-.buttons a:hover {
-    background-color: #F3C172;
+    background-color: var(--primary);
+    color: var(--white);
+    padding: 15px 30px;
 }
 
 .logoname {
@@ -44,154 +37,115 @@
     gap: 10px;
 }
 
-.backarrow {
-    position: absolute;
-    top: 100px;
-    left: 40px;
-    color: #F0BE6F;
+.brand {
     font-size: 24px;
+    font-weight: 600;
+}
+
+.buttons a,
+.backarrow {
+    color: var(--white);
     text-decoration: none;
-    background-color: #FFFFFF;
-    padding: 8px 12px;
-    border-radius: 10px;
-    z-index: 999;
-    width: 36px;
-    height: 36px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+    margin-left: 20px;
+    font-size: 18px;
+    transition: opacity 0.2s;
 }
 
-.backarrow i {
-    font-size: 37px;
-}
-
+.buttons a:hover,
 .backarrow:hover {
-    background-color: #f0eeee;
-}
-
-.bottom-bar {
-    background-color: #1b4c4a;
-    color: white;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 15px;
-    margin-top: 70px;
-    font-family: Kulim Park;
-}
-
-.bgimage {
-    position: relative;
-    background-image: url(/resources/city.png);
-    background-size: 1800px 912px;
-    background-repeat: no-repeat;
-    background-position: center;
-}
-
-.bgimage::before {
-    content: "";
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background-color: rgba(27, 69, 67, 0.6);
-    pointer-events: none;
-
-}
-
-.bgimage>* {
-    position: relative;
-    z-index: 2;
+    opacity: 0.8;
 }
 
 .formbox {
-    width: 100%;
-    max-width: 500px;
-    background-color: white;
-    margin: 89px auto 89px;
-    padding: 30px;
+    background-color: var(--white);
+    max-width: 400px;
+    margin: 50px auto;
+    padding: 40px;
+    border-radius: 12px;
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.1);
     text-align: center;
-    box-sizing: border-box;
-    border-radius: 10px;
-}
-
-form {
-    width: 100%;
-    text-align: left;
-    font-family: Kulim Park;
-    font-size: 18px;
-}
-
-form p {
-    font-weight: 100px;
-    font-style: italic;
-    font-size: 22px;
-    margin-top: 5px;
-    margin-bottom: 8px;
 }
 
 .formbox h2 {
-    font-weight: bolder;
-    font-family: Kulim Park;
-    font-size: 25px;
-    margin-top: 7px;
-    margin-bottom: 6px;
+    color: var(--primary);
+    margin-bottom: 25px;
+    font-size: 26px;
 }
 
-input[type="text"],
-input[type="date"],
-select,
-textarea {
+form label {
+    text-align: left;
+    display: block;
+    margin: 15px 0 5px;
+    color: var(--primary);
+    font-weight: 500;
+}
+
+form input[type="text"],
+form input[type="password"] {
     width: 100%;
-    padding: 8px;
-    margin-bottom: 16px;
-    box-sizing: border-box;
-    font-family: Kulim Park;
-    font-size: 17px;
-    border: solid 2px rgb(27, 69, 67, 0.6);
-}
-
-input[type="date"],
-select {
-    cursor: pointer;
-}
-
-textarea {
-    min-height: 90px;
-    max-height: 90px;
-    min-width: 100%;
-    max-width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    font-size: 15px;
 }
 
 .regisbutton {
-    display: flex;
-    justify-content: center;
-    margin: 10px auto 10px;
+    margin-top: 20px;
 }
 
 .regisbutton input[type="submit"] {
-    width: 50%;
-    height: 40px;
-    font-family: Jost;
-    font-size: 22px;
-    color: #1B4543;
-    background-color: #F0BE6F;
+    background-color: var(--accent);
+    color: var(--primary);
     border: none;
+    padding: 12px 0;
+    font-size: 16px;
+    border-radius: 8px;
+    cursor: pointer;
+    width: 100%;
+    font-weight: 600;
+    transition: background-color 0.3s;
 }
 
 .regisbutton input[type="submit"]:hover {
-    cursor: pointer;
-    background-color: #caa15f;
-    color: #f9fcfb;
+    background-color: #e0aa55;
+}
+
+.bottom-bar {
+    background-color: var(--primary);
+    color: var(--white);
+    display: flex;
+    justify-content: space-between;
+    padding: 20px 30px;
+    font-size: 14px;
+    flex-wrap: wrap;
+}
+.section-label {
+    text-align: left;
+    font-weight: 600;
+    font-size: 16px;
+    color: var(--primary);
+    margin-top: 20px;
+    margin-bottom: 10px;
 }
 
 .sectionfield {
     display: flex;
-    gap: 10px;
+    gap: 20px;
+    margin-top: 10px;
+    flex-wrap: wrap;
 }
 
 .fieldgroup {
     flex: 1;
+    min-width: 160px;
+}
+
+textarea,
+select {
+    width: 100%;
+    padding: 10px;
+    border-radius: 8px;
+    border: 1px solid #ccc;
+    font-size: 15px;
+    resize: vertical;
 }

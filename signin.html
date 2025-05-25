@@ -1,58 +1,52 @@
 <!DOCTYPE html>
-<html>
-
-    <head>
-        <title>Sign-In</title>
-        <link rel="stylesheet" href="stylesign.css">
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
-        <link rel="preconnect" href="https://fonts.googleapis.com">
-        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-        <link href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Jost:ital,wght@0,100..900;1,100..900&family=Kulim+Park:ital,wght@0,200;0,300;0,400;0,600;0,700;1,200;1,300;1,400;1,600;1,700&display=swap" rel="stylesheet">
-    </head>
-
-    <body class="bgimage">
-        <div class="topbar">
-            <div class="logoname">
-                <img src="/resources/serveease logo.png" alt="Logo" width="40" height="40">
-                <span style="font-size: 25px;">ServeEase</span>
-            </div>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>Sign In - ServeEase</title>
+    <link rel="stylesheet" href="stylesign.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Jost:wght@400;600&display=swap" rel="stylesheet">
+</head>
+<body class="bgimage">
     
-            <div class="buttons">
-                <a href="signup.html" class="texts" style="font-size: 20px;">Sign-Up</a>
-                <a href="" class="texts" style="font-size: 20px;">Home</a>
-            </div>
-
-             <a href="" class="backarrow"><i class="fas fa-arrow-left"></i></a>
+    <header class="topbar">
+        <div class="logoname">
+            <img src="/resources/serveease logo.png" alt="ServeEase Logo" width="40" height="40">
+            <span class="brand">ServeEase</span>
         </div>
+        <nav class="buttons">
+            <a href="signup.html" class="texts">Sign Up</a>
+            <a href="index.html" class="texts">Home</a>
+        </nav>
+        <a href="index.html" class="backarrow" title="Back"><i class="fas fa-arrow-left"></i></a>
+    </header>
 
-       
+    <main class="formbox">
+        <h2>Sign In</h2>
+        <form>
+            <label for="email">Email</label>
+            <input type="text" id="email" name="email" placeholder="Enter your email" required>
 
-            <div class="formbox">
-                <h2>Sign-In</h2>
-            
-                <form>
-                    <label for="email">Email</label><br>
-                    <input type="text" id="email" name="email" placeholder="Enter email" required><br>
-                    <label for="password">Password</label><br>
-                    <input type="text" id="password" name="password" placeholder="Enter password" required><br>
-                    <div class="regisbutton">
-                        <input type="submit" value="Enter">
-                    </div>
-                </form> 
-            
+            <label for="password">Password</label>
+            <input type="password" id="password" name="password" placeholder="Enter your password" required>
+
+            <div class="regisbutton">
+                <input type="submit" value="Log In">
             </div>
-        
+        </form>
+    </main>
 
-        <footer class="bottom-bar">
-            <div>
-                <p style="font-size: 14px;">For inquiries, contact us:<br>
-                email@gmail.com <br> 63+ 01234567890</p>
-            </div>
-            <div>
-                <p style="font-size: 17px;">BLANK CITY E-SERVICES</p>
-            </div>
-        </footer>
+    <footer class="bottom-bar">
+        <div>
+            <p>For inquiries, contact us:<br>
+                email@gmail.com<br>+63 01234567890</p>
+        </div>
+        <div>
+            <p>APSAY-UMAY CITY E-SERVICES</p>
+        </div>
+    </footer>
 
-    </body>
-
+</body>
+</html>
 </html>

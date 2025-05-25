@@ -1,0 +1,133 @@
+:root {
+  --primary: #1B4543;
+  --accent: #F0BE6F;
+  --background: #B3D0C6;
+  --text-light: #ffffff;
+  --font: 'Jost', sans-serif;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body, html {
+  height: 100%;
+  font-family: var(--font);
+}
+
+.overlay-bg {
+  background-image: url("resources/citybanner.png");
+  background-size: cover;
+  background-position: center;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+/* Header */
+.topbar {
+  background-color: var(--primary);
+  color: var(--text-light);
+  padding: 10px 30px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.logo-container {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.logo {
+  height: 40px;
+}
+
+.brand {
+  font-size: 22px;
+  font-weight: 600;
+  color: var(--text-light);
+}
+
+.auth-links a {
+  color: var(--text-light);
+  margin-left: 20px;
+  text-decoration: none;
+  font-weight: 500;
+}
+
+.auth-links a:hover {
+  text-decoration: underline;
+}
+/* Main content */
+.main-content {
+  text-align: center;
+  padding: 60px 20px;
+  color: var(--primary);
+}
+
+.portal-title {
+  font-size: 2.8rem;
+  font-weight: 700;
+  color: white;
+  text-shadow: 0px 1px 3px rgba(255,255,255,0.6);
+}
+
+.portal-subtitle {
+  font-size: 1.2rem;
+  margin-top: 10px;
+  margin-bottom: 40px;
+  color: white;
+}
+
+.icon-links {
+  display: flex;
+  justify-content: center;
+  gap: 40px;
+  flex-wrap: wrap;
+}
+
+.icon-links a {
+  background-color: rgba(27, 69, 67, 0.8); /* semi-translucent dark green */
+  padding: 20px;
+  border-radius: 20px;
+  width: 160px;
+  text-align: center;
+  text-decoration: none;
+  color: white
+  font-weight: 600;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+  transition: transform 0.3s ease, background-color 0.3s ease;
+}
+
+.icon-links a:hover {
+  transform: scale(1.05);
+  background-color: rgba(27, 69, 67, 0.9);
+}
+
+.icon-links img {
+  width: 80px;
+  height: 80px;
+  margin-bottom: 10px;
+}
+
+.icon-links a:hover {
+  transform: scale(1.05);
+}
+
+span{
+  color: white;
+}
+
+/* Footer */
+.footer {
+  background-color: var(--primary);
+  color: var(--text-light);
+  text-align: center;
+  padding: 20px 10px;
+  font-size: 14px;
+}
