@@ -1,0 +1,611 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>All Services - ServeEase</title>
+  <link href="https://fonts.googleapis.com/css2?family=Jost:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <style>
+    :root {
+      --primary: #2563eb;
+      --primary-dark: #1d4ed8;
+      --secondary: #10b981;
+      --dark: #1e293b;
+      --light: #f8fafc;
+      --gray: #94a3b8;
+    }
+    
+    body {
+      font-family: 'Jost', sans-serif;
+      background-color: #f1f5f9;
+      margin: 0;
+      padding: 0;
+      color: var(--dark);
+    }
+    
+    .overlay-bg {
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+    
+    /* Header Styles (consistent with main page) */
+    .topbar {
+      background: white;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+      padding: 1rem 2rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    
+    .logo-container {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+    
+    .logo {
+      height: 40px;
+    }
+    
+    .brand {
+      font-weight: 700;
+      font-size: 1.5rem;
+      color: var(--primary);
+    }
+    
+    .auth-links a {
+      margin-left: 20px;
+      text-decoration: none;
+      color: var(--dark);
+      font-weight: 500;
+      transition: color 0.2s;
+    }
+    
+    .auth-links a:hover {
+      color: var(--primary);
+    }
+    
+    /* Services Page Specific Styles */
+    .services-container {
+      max-width: 1200px;
+      margin: 2rem auto;
+      padding: 0 2rem;
+      flex: 1;
+    }
+    
+    .page-header {
+      text-align: center;
+      margin-bottom: 3rem;
+    }
+    
+    .page-header h1 {
+      font-size: 2.5rem;
+      color: var(--primary);
+      margin-bottom: 0.5rem;
+    }
+    
+    .page-header p {
+      color: var(--gray);
+      font-size: 1.1rem;
+      max-width: 700px;
+      margin: 0 auto;
+    }
+    
+    .search-filter-container {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 2rem;
+      flex-wrap: wrap;
+      gap: 1rem;
+    }
+    
+    .search-box {
+      position: relative;
+      flex-grow: 1;
+      max-width: 500px;
+    }
+    
+    .search-box input {
+      width: 100%;
+      padding: 12px 20px 12px 45px;
+      border: 2px solid #e2e8f0;
+      border-radius: 30px;
+      font-size: 1rem;
+      transition: all 0.3s;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='20' height='20' viewBox='0 0 24 24' fill='none' stroke='%2394a3b8' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Ccircle cx='11' cy='11' r='8'%3E%3C/circle%3E%3Cpath d='M21 21l-4.35-4.35'%3E%3C/path%3E%3C/svg%3E");
+      background-repeat: no-repeat;
+      background-position: 15px center;
+    }
+    
+    .search-box input:focus {
+      outline: none;
+      border-color: var(--primary);
+      box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.2);
+    }
+    
+    .filter-dropdown {
+      position: relative;
+    }
+    
+    .filter-btn {
+      background: white;
+      border: 2px solid #e2e8f0;
+      border-radius: 30px;
+      padding: 10px 20px;
+      font-weight: 600;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      transition: all 0.2s;
+    }
+    
+    .filter-btn:hover {
+      border-color: var(--primary);
+    }
+    
+    .filter-btn i {
+      font-size: 0.9rem;
+    }
+    
+    .filter-menu {
+      position: absolute;
+      right: 0;
+      top: 110%;
+      background: white;
+      border-radius: 10px;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.15);
+      padding: 1rem;
+      width: 250px;
+      z-index: 10;
+      display: none;
+    }
+    
+    .filter-menu.show {
+      display: block;
+    }
+    
+    .filter-group {
+      margin-bottom: 1rem;
+    }
+    
+    .filter-group h4 {
+      margin: 0 0 0.5rem 0;
+      font-size: 0.9rem;
+      color: var(--gray);
+    }
+    
+    .filter-options {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+    
+    .filter-option {
+      background: #f1f5f9;
+      border-radius: 20px;
+      padding: 5px 12px;
+      font-size: 0.85rem;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+    
+    .filter-option:hover, .filter-option.active {
+      background: var(--primary);
+      color: white;
+    }
+    
+    /* Services Grid */
+    .services-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+      gap: 1.5rem;
+    }
+    
+    .service-card {
+      background: white;
+      border-radius: 12px;
+      overflow: hidden;
+      box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+      transition: all 0.3s ease;
+      position: relative;
+    }
+    
+    .service-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+    }
+    
+    .service-card-header {
+      height: 120px;
+      background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: white;
+      font-size: 2.5rem;
+    }
+    
+    .service-card-body {
+      padding: 1.5rem;
+    }
+    
+    .service-card h3 {
+      margin: 0 0 0.5rem 0;
+      color: var(--dark);
+    }
+    
+    .service-card p {
+      color: var(--gray);
+      font-size: 0.9rem;
+      margin: 0 0 1.5rem 0;
+      line-height: 1.5;
+    }
+    
+    .service-card-footer {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    
+    .service-time {
+      font-size: 0.8rem;
+      color: var(--gray);
+      display: flex;
+      align-items: center;
+      gap: 5px;
+    }
+    
+    .service-btn {
+      background: var(--primary);
+      color: white;
+      border: none;
+      border-radius: 6px;
+      padding: 8px 16px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.2s;
+      font-size: 0.9rem;
+    }
+    
+    .service-btn:hover {
+      background: var(--primary-dark);
+    }
+    
+    .popular-badge {
+      position: absolute;
+      top: 10px;
+      right: 10px;
+      background: var(--secondary);
+      color: white;
+      padding: 4px 10px;
+      border-radius: 20px;
+      font-size: 0.7rem;
+      font-weight: 600;
+    }
+    
+    /* Service Categories */
+    .category-tabs {
+      display: flex;
+      gap: 10px;
+      margin-bottom: 2rem;
+      overflow-x: auto;
+      padding-bottom: 10px;
+    }
+    
+    .category-tab {
+      background: white;
+      border: 1px solid #e2e8f0;
+      border-radius: 30px;
+      padding: 8px 20px;
+      cursor: pointer;
+      font-weight: 500;
+      white-space: nowrap;
+      transition: all 0.2s;
+    }
+    
+    .category-tab:hover, .category-tab.active {
+      background: var(--primary);
+      color: white;
+      border-color: var(--primary);
+    }
+    
+    /* Footer Styles */
+    .footer {
+      background: var(--dark);
+      color: white;
+      padding: 2rem;
+      text-align: center;
+      margin-top: 3rem;
+    }
+    
+    .footer-links {
+      display: flex;
+      justify-content: center;
+      gap: 2rem;
+      margin-bottom: 1rem;
+      flex-wrap: wrap;
+    }
+    
+    .footer-links a {
+      color: white;
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+    
+    .footer-links a:hover {
+      color: var(--secondary);
+    }
+    
+    .footer p {
+      margin: 0.5rem 0;
+      color: var(--gray);
+    }
+    
+    /* Responsive Adjustments */
+    @media (max-width: 768px) {
+      .services-grid {
+        grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+      }
+      
+      .search-filter-container {
+        flex-direction: column;
+        align-items: stretch;
+      }
+      
+      .filter-dropdown {
+        align-self: flex-end;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="overlay-bg">
+    <header class="topbar">
+      <div class="logo-container">
+        <img src="resources/serveease logo.png" alt="ServeEase Logo" class="logo">
+        <span class="brand">ServeEase</span>
+      </div>
+      <div class="auth-links">
+        <a href="signin.html"><i class="fas fa-sign-in-alt"></i> Sign In</a>
+        <a href="signup.html"><i class="fas fa-user-plus"></i> Sign Up</a>
+      </div>
+    </header>
+
+    <div class="services-container">
+      <div class="page-header">
+        <h1>All City Services</h1>
+        <p>Browse and access all available services from Apsay-Umay City government in one convenient location</p>
+      </div>
+
+      <div class="search-filter-container">
+        <div class="search-box">
+          <input type="text" placeholder="Search services..." id="serviceSearch">
+        </div>
+        <div class="filter-dropdown">
+          <button class="filter-btn" id="filterBtn">
+            <i class="fas fa-sliders-h"></i> Filters
+          </button>
+          <div class="filter-menu" id="filterMenu">
+            <div class="filter-group">
+              <h4>Service Type</h4>
+              <div class="filter-options">
+                <div class="filter-option">All</div>
+                <div class="filter-option">Permits</div>
+                <div class="filter-option">Utilities</div>
+                <div class="filter-option">Taxes</div>
+                <div class="filter-option">Housing</div>
+              </div>
+            </div>
+            <div class="filter-group">
+              <h4>Processing Time</h4>
+              <div class="filter-options">
+                <div class="filter-option">Any</div>
+                <div class="filter-option">Same Day</div>
+                <div class="filter-option">1-3 Days</div>
+                <div class="filter-option">1 Week+</div>
+              </div>
+            </div>
+            <div class="filter-group">
+              <h4>Availability</h4>
+              <div class="filter-options">
+                <div class="filter-option active">All</div>
+                <div class="filter-option">Online Only</div>
+                <div class="filter-option">In-Person</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="category-tabs">
+        <div class="category-tab active">All Services</div>
+        <div class="category-tab">Most Popular</div>
+        <div class="category-tab">Business</div>
+        <div class="category-tab">Residential</div>
+        <div class="category-tab">Construction</div>
+        <div class="category-tab">Transportation</div>
+        <div class="category-tab">Health</div>
+        <div class="category-tab">Education</div>
+      </div>
+
+      <div class="services-grid">
+        <!-- Service Card 1 -->
+        <div class="service-card">
+          <div class="popular-badge">Most Popular</div>
+          <div class="service-card-header">
+            <i class="fas fa-home"></i>
+          </div>
+          <div class="service-card-body">
+            <h3>Building Permit</h3>
+            <p>Apply for new construction, renovation, or demolition permits for residential and commercial properties.</p>
+            <div class="service-card-footer">
+              <span class="service-time"><i class="far fa-clock"></i> 5-7 days</span>
+              <button class="service-btn">Apply Now</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Service Card 2 -->
+        <div class="service-card">
+          <div class="service-card-header" style="background: linear-gradient(135deg, #10b981, #059669);">
+            <i class="fas fa-lightbulb"></i>
+          </div>
+          <div class="service-card-body">
+            <h3>Utility Connection</h3>
+            <p>Request new electricity, water, or gas connections for your property or business establishment.</p>
+            <div class="service-card-footer">
+              <span class="service-time"><i class="far fa-clock"></i> 2-3 days</span>
+              <button class="service-btn" style="background: #10b981;">Apply Now</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Service Card 3 -->
+        <div class="service-card">
+          <div class="service-card-header" style="background: linear-gradient(135deg, #f59e0b, #d97706);">
+            <i class="fas fa-receipt"></i>
+          </div>
+          <div class="service-card-body">
+            <h3>Business Tax Payment</h3>
+            <p>Pay your business taxes online securely with multiple payment options available.</p>
+            <div class="service-card-footer">
+              <span class="service-time"><i class="far fa-clock"></i> Instant</span>
+              <button class="service-btn" style="background: #f59e0b;">Pay Now</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Service Card 4 -->
+        <div class="service-card">
+          <div class="popular-badge">New</div>
+          <div class="service-card-header" style="background: linear-gradient(135deg, #8b5cf6, #7c3aed);">
+            <i class="fas fa-id-card"></i>
+          </div>
+          <div class="service-card-body">
+            <h3>ID Card Application</h3>
+            <p>Apply for or renew your city resident identification card with online submission.</p>
+            <div class="service-card-footer">
+              <span class="service-time"><i class="far fa-clock"></i> 7-10 days</span>
+              <button class="service-btn" style="background: #8b5cf6;">Apply Now</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Service Card 5 -->
+        <div class="service-card">
+          <div class="service-card-header" style="background: linear-gradient(135deg, #ec4899, #db2777);">
+            <i class="fas fa-tree"></i>
+          </div>
+          <div class="service-card-body">
+            <h3>Park Reservation</h3>
+            <p>Reserve city parks and recreational facilities for private events and gatherings.</p>
+            <div class="service-card-footer">
+              <span class="service-time"><i class="far fa-clock"></i> 1-2 days</span>
+              <button class="service-btn" style="background: #ec4899;">Reserve Now</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Service Card 6 -->
+        <div class="service-card">
+          <div class="service-card-header" style="background: linear-gradient(135deg, #6366f1, #4f46e5);">
+            <i class="fas fa-car"></i>
+          </div>
+          <div class="service-card-body">
+            <h3>Vehicle Registration</h3>
+            <p>Register new vehicles or renew existing registrations with our online portal.</p>
+            <div class="service-card-footer">
+              <span class="service-time"><i class="far fa-clock"></i> 3-5 days</span>
+              <button class="service-btn" style="background: #6366f1;">Register Now</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <footer class="footer">
+      <div class="footer-links">
+        <a href="about.html">About Us</a>
+        <a href="contact.html">Contact</a>
+        <a href="privacy.html">Privacy Policy</a>
+        <a href="terms.html">Terms of Service</a>
+        <a href="faq.html">FAQ</a>
+      </div>
+      <p>APSAY-UMAY CITY E-SERVICES</p>
+      <p>Contact: email@gmail.com | +63 012 3456 7890</p>
+      <p>© 2023 ServeEase Citizen Portal. All rights reserved.</p>
+    </footer>
+  </div>
+
+  <script>
+    // Filter dropdown toggle
+    const filterBtn = document.getElementById('filterBtn');
+    const filterMenu = document.getElementById('filterMenu');
+    
+    filterBtn.addEventListener('click', () => {
+      filterMenu.classList.toggle('show');
+    });
+    
+    // Close filter menu when clicking outside
+    document.addEventListener('click', (e) => {
+      if (!filterBtn.contains(e.target) && !filterMenu.contains(e.target)) {
+        filterMenu.classList.remove('show');
+      }
+    });
+    
+    // Filter option selection
+    const filterOptions = document.querySelectorAll('.filter-option');
+    filterOptions.forEach(option => {
+      option.addEventListener('click', function() {
+        // Remove active class from siblings
+        this.parentElement.querySelectorAll('.filter-option').forEach(opt => {
+          opt.classList.remove('active');
+        });
+        
+        // Add active to clicked
+        this.classList.add('active');
+      });
+    });
+    
+    // Category tab selection
+    const categoryTabs = document.querySelectorAll('.category-tab');
+    categoryTabs.forEach(tab => {
+      tab.addEventListener('click', function() {
+        // Remove active class from siblings
+        document.querySelectorAll('.category-tab').forEach(t => {
+          t.classList.remove('active');
+        });
+        
+        // Add active to clicked
+        this.classList.add('active');
+        
+        // Here you would typically filter services
+        // For demo, we're just changing the UI
+      });
+    });
+    
+    // Search functionality
+    const serviceSearch = document.getElementById('serviceSearch');
+    serviceSearch.addEventListener('input', function() {
+      const searchTerm = this.value.toLowerCase();
+      const services = document.querySelectorAll('.service-card');
+      
+      services.forEach(service => {
+        const title = service.querySelector('h3').textContent.toLowerCase();
+        const desc = service.querySelector('p').textContent.toLowerCase();
+        
+        if (title.includes(searchTerm) || desc.includes(searchTerm)) {
+          service.style.display = 'block';
+        } else {
+          service.style.display = 'none';
+        }
+      });
+    });
+  </script>
+</body>
+</html>
