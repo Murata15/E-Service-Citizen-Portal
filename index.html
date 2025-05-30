@@ -17,9 +17,14 @@
         <img src="resources/serveease logo.png" alt="ServeEase Logo" class="logo" />
         <span class="brand">ServeEase</span>
       </div>
+      <nav class="nav-links">
+        <a href="services.html">Services</a>
+        <a href="faq.html">FAQ</a>
+        <a href="contact.html">Contact</a>
+      </nav>
       <div class="auth-links">
-        <a href="signin.html">Sign In</a>
-        <a href="signup.html">Sign Up</a>
+        <a href="signin.html" class="btn-login">Sign In</a>
+        <a href="signup.html" class="btn-signup">Sign Up</a>
       </div>
     </header>
 
@@ -27,17 +32,54 @@
       <h1 class="portal-title">E-Service Citizen Portal</h1>
       <p class="portal-subtitle">Your one-stop platform for city services and requests.</p>
 
-      <div class="icon-links">
-        <a href="signin.html">
+      <div class="search-container">
+          <input type="text" placeholder="Search services (e.g., permits, licenses)" aria-label="Search services">
+          <button><i class="fas fa-search"></i> Search</button>
+        </div>
+      </div>
+
+      <div class="quick-actions">
+        <a href="signin.html" class="action-card">
           <img src="resources/permits.png" alt="Submit Request" />
           <span>Submit Request</span>
         </a>
-        <a href="signin.html">
+        <a href="signin.html" class="action-card">
           <img src="resources/check status.png" alt="Check Status" />
-          <span>Check Status</span>
+          <span>Track Request</span>
+        </a>
+        <a href="signin.html" class="action-card">
+          <img src="resources/payment.png" alt="Pay Online" />
+          <span>Pay Online</span>
+        </a>
+        <a href="signin.html" class="action-card">
+          <img src="resources/calendar.png" alt="Book Appointment" />
+          <span>Book Appointment</span>
         </a>
       </div>
-    </main>
+
+       <section class="services-section">
+        <h2>Popular Services</h2>
+        <div class="services-grid">
+          <div class="service-card">
+            <i class="fas fa-file-alt"></i>
+            <h3>Business Permits</h3>
+            <p>Apply for new or renew business permits online.</p>
+            <a href="#" class="btn-service">Apply Now</a>
+          </div>
+          <div class="service-card">
+            <i class="fas fa-home"></i>
+            <h3>Health Service</h3>
+            <p>Book a free medical appointment now.</p>
+            <a href="#" class="btn-service">Book Now</a>
+          </div>
+          <div class="service-card">
+            <i class="fas fa-id-card"></i>
+            <h3>ID & Licenses</h3>
+            <p>Apply for city IDs, driver’s licenses, and more.</p>
+            <a href="#" class="btn-service">Learn More</a>
+          </div>
+        </div>
+      </section>
 
     <footer class="footer">
   <div class="footer-content">
@@ -48,6 +90,17 @@
         <li><a href="faq.html">FAQ</a></li>
       </ul>
     </div>
+
+     <section class="news-section">
+        <h2>Latest Updates</h2>
+        <div class="news-card">
+          <h3>New Online Payment System</h3>
+          <p>Pay your fees securely with our upgraded payment gateway.</p>
+          <a href="#" class="btn-news">Read More →</a>
+        </div>
+      </section>
+    </main>
+    
     <div class="footer-section">
       <h3>Contact</h3>
       <p><i class="icon-email"></i> email@gmail.com</p>
@@ -59,5 +112,13 @@
   </div>
 </footer>
   </div>
+
+  <div class="chatbot-icon">
+      <i class="fas fa-robot"></i>
+    </div>
+  </div>
+  <script src="script.js"></script>
+</body>
+
 </body>
 </html>
