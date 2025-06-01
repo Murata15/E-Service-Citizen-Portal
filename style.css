@@ -13,7 +13,8 @@
   box-sizing: border-box;
 }
 
-body, html {
+body,
+html {
   height: 100%;
   font-family: var(--font);
 }
@@ -406,7 +407,7 @@ body, html {
     border-radius: 10px;
   }
 
-  .search-container input, 
+  .search-container input,
   .search-container button {
     width: 100%;
     border-radius: 0;
