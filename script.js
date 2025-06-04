@@ -36,3 +36,64 @@ serviceCards.forEach(card => {
   card.style.transition = 'opacity 0.5s, transform 0.5s';
   observer.observe(card);
 });
+
+// Additiona Login Popup
+const loginPopup = document.getElementById('loginPopup');
+const serviceButtons = document.querySelectorAll('.service-btn, .service-card');
+const closeModal = document.querySelector('.close-modal');
+const modalLoginForm = document.getElementById('modalLoginForm');
+
+// Auth check replacement pa
+function isLoggedIn() {
+  return localStorage.getItem('isLoggedIn') === 'true'; // Possible auth replacement 
+}
+
+// Show login popup when clicking services
+serviceButtons.forEach(button => {
+  button.addEventListener('click', (e) => {
+    if (!isLoggedIn()) {
+      e.preventDefault();
+      loginPopup.style.display = 'block';
+      document.body.style.overflow = 'hidden'; 
+    }
+  });
+});
+
+closeModal.addEventListener('click', () => {
+  loginPopup.style.display = 'none';
+  document.body.style.overflow = 'auto';
+});
+
+window.addEventListener('click', (e) => {
+  if (e.target === loginPopup) {
+    loginPopup.style.display = 'none';
+    document.body.style.overflow = 'auto';
+  }
+});
+
+modalLoginForm.addEventListener('submit', (e) => {
+  e.preventDefault();
+  const email = document.getElementById('modalEmail').value;
+  const password = document.getElementById('modalPassword').value;
+  
+  // Possible modification for this pa
+  if (email && password) {
+    // Simulate successful login
+    localStorage.setItem('isLoggedIn', 'true');
+    loginPopup.style.display = 'none';
+    document.body.style.overflow = 'auto';
+    
+    const clickedButton = document.querySelector('.service-btn.clicked');
+    if (clickedButton) {
+      window.location.href = clickedButton.href;
+    }
+  } else {
+    alert('Please enter both email and password');
+  }
+});
+
+document.querySelectorAll('.service-btn').forEach(btn => {
+  btn.addEventListener('click', function() {
+    this.classList.add('clicked');
+  });
+});

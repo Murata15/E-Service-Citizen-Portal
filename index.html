@@ -81,8 +81,6 @@
         </div>
       </section>
 
-
-
       <section class="news-section">
         <h2>Latest Updates</h2>
         <div class="news-card">
@@ -91,6 +89,31 @@
           <a href="#" class="btn-news">Read More →</a>
         </div>
       </section>
+
+<div id="loginPopup" class="modal">
+  <div class="modal-content">
+    <span class="close-modal">&times;</span>
+    <h2>Login Required</h2>
+    <p>Please login to access this service.</p>
+    
+<form id="modalLoginForm">
+      <div class="form-group">
+        <label for="modalEmail">Email</label>
+        <input type="email" id="modalEmail" required>
+      </div>
+      <div class="form-group">
+        <label for="modalPassword">Password</label>
+        <input type="password" id="modalPassword" required>
+      </div>
+      <button type="submit" class="btn-login">Login</button>
+    </form>
+    
+    <div class="modal-footer">
+      <p>Don't have an account? <a href="signup.html">Sign up</a></p>
+    </div>
+  </div>
+</div>
+
     </main>
 
     <footer class="footer">
