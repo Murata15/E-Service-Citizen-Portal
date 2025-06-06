@@ -91,6 +91,91 @@ modalLoginForm.addEventListener('submit', (e) => {
     alert('Please enter both email and password');
   }
 });
+// Auth functions
+document.addEventListener('DOMContentLoaded', function() {
+  // Check if user is logged in
+  checkLoginStatus();
+  
+  // Handle modal login form submission
+  const modalLoginForm = document.getElementById('modalLoginForm');
+  if (modalLoginForm) {
+    modalLoginForm.addEventListener('submit', function(e) {
+      e.preventDefault();
+      const email = document.getElementById('modalEmail').value;
+      const password = document.getElementById('modalPassword').value;
+      
+      // Try to login
+      if (loginUser(email, password)) {
+        // Get the redirect URL from sessionStorage
+        const redirectUrl = sessionStorage.getItem('redirectAfterLogin') || 'index.html';
+        
+        // Clear the redirect URL
+        sessionStorage.removeItem('redirectAfterLogin');
+        
+        // Redirect to the original page or home
+        window.location.href = redirectUrl;
+      } else {
+        document.getElementById('loginMessage').textContent = 'Invalid email or password';
+      }
+    });
+  }
+  
+  // Add click handlers to all protected links
+  document.querySelectorAll('[data-protected]').forEach(link => {
+    link.addEventListener('click', function(e) {
+      if (!isLoggedIn()) {
+        e.preventDefault();
+        // Store the intended destination
+        sessionStorage.setItem('redirectAfterLogin', this.href);
+        // Show login modal
+        document.getElementById('loginPopup').style.display = 'block';
+      }
+    });
+  });
+});
+
+// Check if user is logged in
+function isLoggedIn() {
+  return localStorage.getItem('currentUser') !== null;
+}
+
+// Check login status and update UI
+function checkLoginStatus() {
+  const authLinks = document.querySelector('.auth-links');
+  if (!authLinks) return;
+  
+  if (isLoggedIn()) {
+    const user = JSON.parse(localStorage.getItem('currentUser'));
+    authLinks.innerHTML = `
+      <span>Welcome, ${user.email}</span>
+      <a href="#" class="btn-logout" id="logoutBtn">Logout</a>
+    `;
+    document.getElementById('logoutBtn').addEventListener('click', logoutUser);
+  }
+}
+
+// Login function
+function loginUser(email, password) {
+  // Get stored user data
+  const userData = JSON.parse(localStorage.getItem(email));
+  
+  // Check if user exists and password matches
+  if (userData && userData.password === password) {
+    // Store current user in localStorage
+    localStorage.setItem('currentUser', JSON.stringify({
+      email: email,
+      // other user data you want to store
+    }));
+    return true;
+  }
+  return false;
+}
+
+// Logout function
+function logoutUser() {
+  localStorage.removeItem('currentUser');
+  window.location.reload();
+}
 
 // Signup form handling
 const signupForm = document.getElementById('signupForm');
