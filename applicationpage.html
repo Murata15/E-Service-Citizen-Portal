@@ -1,0 +1,414 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Register for Services - ServeEase</title>
+  <link rel="stylesheet" href="applicationpagestyle.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Jost:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"> 
+</head>
+
+<body>
+  <header class="topbar">
+    <div class="logo-container">
+      <img src="resources/serveease logo.png" alt="ServeEase Logo" class="logo">
+      <span class="brand">ServeEase</span>
+    </div>
+    <div class="auth-links">
+      <a href="signin.html"><i class="fas fa-sign-in-alt"></i> Sign In</a>
+      <a href="signup.html"><i class="fas fa-user-plus"></i> Sign Up</a>
+    </div>
+  </header>
+
+  <div class="registration-container">
+    <div class="breadcrumb">
+      <a href="index.html">Home</a>
+      <span>/</span>
+      <a href="services.html">All Services</a>
+      <span>/</span>
+      <a href="#">Register for Services</a>
+    </div>
+
+    <div class="page-header">
+      <h1>Register for City Services</h1>
+      <p>Select and register for the services you need from Apsay-Umay City</p>
+    </div>
+
+    <div class="registration-steps">
+      <div class="step active" data-step="1">
+        <div class="step-number">1</div>
+        <div class="step-title">Select Services</div>
+      </div>
+      <div class="step" data-step="2">
+        <div class="step-number">2</div>
+        <div class="step-title">Provide Information</div>
+      </div>
+      <div class="step" data-step="3">
+        <div class="step-number">3</div>
+        <div class="step-title">Review & Submit</div>
+      </div>
+      <div class="step" data-step="4">
+        <div class="step-number">4</div>
+        <div class="step-title">Confirmation</div>
+      </div>
+    </div>
+
+    <div class="registration-form">
+      <!-- Step 1: Service Selection -->
+      <div class="form-section active" id="step1">
+        <h2>Select Services</h2>
+        <p>Choose the services you want to register for from the options below:</p>
+        
+        <div class="services-grid">
+          <!-- Building Permit Card -->
+          <div class="service-card" data-service="building-permit">
+            <div class="select-service"></div>
+            <div class="service-card-header">
+              <div class="service-icon">
+                <i class="fas fa-home"></i>
+              </div>
+              <h3>Building Permit</h3>
+              <div class="service-meta">
+                <span><i class="far fa-clock"></i> 5-7 days</span>
+                <span><i class="fas fa-tag"></i> Varies</span>
+              </div>
+            </div>
+            <div class="service-card-body">
+              <p>Required for all new construction, renovations, additions, and demolition projects.</p>
+            </div>
+          </div>
+
+          <!-- Business License Card -->
+          <div class="service-card" data-service="business-license">
+            <div class="select-service"></div>
+            <div class="service-card-header">
+              <div class="service-icon">
+                <i class="fas fa-briefcase"></i>
+              </div>
+              <h3>Business License</h3>
+              <div class="service-meta">
+                <span><i class="far fa-clock"></i> 3-5 days</span>
+                <span><i class="fas fa-tag"></i> ₱1,200</span>
+              </div>
+            </div>
+            <div class="service-card-body">
+              <p>Register new businesses or renew existing licenses with our streamlined process.</p>
+            </div>
+          </div>
+
+          <!-- Property Tax Card -->
+          <div class="service-card" data-service="property-tax">
+            <div class="select-service"></div>
+            <div class="service-card-header">
+              <div class="service-icon">
+                <i class="fas fa-file-invoice-dollar"></i>
+              </div>
+              <h3>Property Tax</h3>
+              <div class="service-meta">
+                <span><i class="far fa-clock"></i> Instant</span>
+                <span><i class="fas fa-tag"></i> Varies</span>
+              </div>
+            </div>
+            <div class="service-card-body">
+              <p>Pay your real property taxes online with multiple payment options.</p>
+            </div>
+          </div>
+
+          <!-- Health Certificate Card -->
+          <div class="service-card" data-service="health-certificate">
+            <div class="select-service"></div>
+            <div class="service-card-header">
+              <div class="service-icon">
+                <i class="fas fa-heartbeat"></i>
+              </div>
+              <h3>Health Certificate</h3>
+              <div class="service-meta">
+                <span><i class="far fa-clock"></i> 1-2 days</span>
+                <span><i class="fas fa-tag"></i> ₱300</span>
+              </div>
+            </div>
+            <div class="service-card-body">
+              <p>Apply for food handler or sanitary permits required for food businesses.</p>
+            </div>
+          </div>
+
+          <!-- Vehicle Registration Card -->
+          <div class="service-card" data-service="vehicle-registration">
+            <div class="select-service"></div>
+            <div class="service-card-header">
+              <div class="service-icon">
+                <i class="fas fa-car"></i>
+              </div>
+              <h3>Vehicle Registration</h3>
+              <div class="service-meta">
+                <span><i class="far fa-clock"></i> 1 day</span>
+                <span><i class="fas fa-tag"></i> ₱1,800</span>
+              </div>
+            </div>
+            <div class="service-card-body">
+              <p>Register or renew your vehicle registration with our online portal.</p>
+            </div>
+          </div>
+
+          <!-- Event Permit Card -->
+          <div class="service-card" data-service="event-permit">
+            <div class="select-service"></div>
+            <div class="service-card-header">
+              <div class="service-icon">
+                <i class="fas fa-calendar-alt"></i>
+              </div>
+              <h3>Event Permit</h3>
+              <div class="service-meta">
+                <span><i class="far fa-clock"></i> 5-7 days</span>
+                <span><i class="fas fa-tag"></i> ₱500-₱2,000</span>
+              </div>
+            </div>
+            <div class="service-card-body">
+              <p>Apply for permits required for public events and gatherings.</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="form-actions">
+          <button type="button" class="btn btn-secondary" disabled>Back</button>
+          <button type="button" class="btn btn-primary next-step" data-next="step2">Continue</button>
+        </div>
+      </div>
+
+      <!-- Step 2: Information Form -->
+      <div class="form-section" id="step2">
+        <h2>Provide Your Information</h2>
+        <p>Please fill in your details to proceed with the service registration.</p>
+        
+        <div class="form-row">
+          <label for="fullname">Full Name</label>
+          <input type="text" id="fullname" name="fullname" required>
+        </div>
+        
+        <div class="form-row">
+          <label for="email">Email Address</label>
+          <input type="email" id="email" name="email" required>
+        </div>
+        
+        <div class="form-row">
+          <label for="phone">Phone Number</label>
+          <input type="tel" id="phone" name="phone" required>
+        </div>
+        
+        <div class="form-row">
+          <label for="address">Residential Address</label>
+          <textarea id="address" name="address" rows="3" required></textarea>
+        </div>
+        
+        <div class="form-row">
+          <label for="purpose">Purpose of Application</label>
+          <select id="purpose" name="purpose" required>
+            <option value="">Select purpose</option>
+            <option value="new">New Application</option>
+            <option value="renewal">Renewal</option>
+            <option value="amendment">Amendment</option>
+            <option value="other">Other</option>
+          </select>
+        </div>
+
+        <div class="form-actions">
+          <button type="button" class="btn btn-secondary prev-step" data-prev="step1">Back</button>
+          <button type="button" class="btn btn-primary next-step" data-next="step3">Continue</button>
+        </div>
+      </div>
+
+      <!-- Step 3: Review -->
+      <div class="form-section" id="step3">
+        <h2>Review Your Registration</h2>
+        <p>Please review your information before submitting your application.</p>
+        
+        <div class="review-item">
+          <h3>Selected Services</h3>
+          <div class="review-value" id="review-services">
+            No services selected
+          </div>
+        </div>
+        
+        <div class="review-item">
+          <h3>Personal Information</h3>
+          <div class="review-value" id="review-personal">
+            No information provided
+          </div>
+        </div>
+        
+        <div class="review-item">
+          <h3>Application Purpose</h3>
+          <div class="review-value" id="review-purpose">
+            Not specified
+          </div>
+        </div>
+
+        <div class="form-actions">
+          <button type="button" class="btn btn-secondary prev-step" data-prev="step2">Back</button>
+          <button type="button" class="btn btn-primary next-step" data-next="step4">Submit Application</button>
+        </div>
+      </div>
+
+      <!-- Step 4: Confirmation -->
+      <div class="form-section" id="step4">
+        <div class="confirmation-message">
+          <div class="confirmation-icon">
+            <i class="fas fa-check"></i>
+          </div>
+          <h2>Application Submitted Successfully!</h2>
+          <p>Your service registration has been received. We've sent a confirmation to your email address with your application details and next steps.</p>
+          <p>Your reference number is: <strong>APS-2023-987654</strong></p>
+          <button type="button" class="btn btn-primary" onclick="window.location.href='dashboard.html'">Go to Dashboard</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <footer class="footer">
+    <div class="footer-content">
+      <div class="footer-section">
+        <h3>Quick Links</h3>
+        <ul class="footer-links">
+          <li><a href="#">Home</a></li>
+          <li><a href="#">All Services</a></li>
+          <li><a href="#">Service Status</a></li>
+          <li><a href="#">Announcements</a></li>
+        </ul>
+      </div>
+      
+      <div class="footer-section">
+        <h3>Information</h3>
+        <ul class="footer-links">
+          <li><a href="#">About Us</a></li>
+          <li><a href="#">Contact</a></li>
+          <li><a href="#">FAQ</a></li>
+          <li><a href="#">Help Center</a></li>
+        </ul>
+      </div>
+      
+      <div class="footer-section">
+        <h3>Legal</h3>
+        <ul class="footer-links">
+          <li><a href="#">Privacy Policy</a></li>
+          <li><a href="#">Terms of Service</a></li>
+          <li><a href="#">Accessibility</a></li>
+          <li><a href="#">Sitemap</a></li>
+        </ul>
+      </div>
+      
+      <div class="footer-section">
+        <h3>Connect With Us</h3>
+        <p><i class="fas fa-envelope"></i> services@apsayumay.gov.ph</p>
+        <p><i class="fas fa-phone"></i> +63 012 3456 7890</p>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    // Service selection
+    const serviceCards = document.querySelectorAll('.service-card');
+    const selectServiceBtns = document.querySelectorAll('.select-service');
+    
+    selectServiceBtns.forEach(btn => {
+      btn.addEventListener('click', function() {
+        const card = this.closest('.service-card');
+        card.classList.toggle('selected');
+      });
+    });
+    
+    // Form navigation
+    const nextStepBtns = document.querySelectorAll('.next-step');
+    const prevStepBtns = document.querySelectorAll('.prev-step');
+    const formSections = document.querySelectorAll('.form-section');
+    const steps = document.querySelectorAll('.step');
+    
+    nextStepBtns.forEach(btn => {
+      btn.addEventListener('click', function() {
+        const nextStep = this.getAttribute('data-next');
+        navigateToStep(nextStep);
+      });
+    });
+    
+    prevStepBtns.forEach(btn => {
+      btn.addEventListener('click', function() {
+        const prevStep = this.getAttribute('data-prev');
+        navigateToStep(prevStep);
+      });
+    });
+    
+    function navigateToStep(stepId) {
+      // Hide all form sections
+      formSections.forEach(section => {
+        section.classList.remove('active');
+      });
+      
+      // Show the selected section
+      document.getElementById(stepId).classList.add('active');
+      
+      // Update step indicators
+      const stepNumber = parseInt(stepId.replace('step', ''));
+      steps.forEach((step, index) => {
+        if (index + 1 < stepNumber) {
+          step.classList.remove('active');
+          step.classList.add('completed');
+        } else if (index + 1 === stepNumber) {
+          step.classList.add('active');
+          step.classList.remove('completed');
+        } else {
+          step.classList.remove('active');
+          step.classList.remove('completed');
+        }
+      });
+      
+      // Update review section if we're on step 3
+      if (stepId === 'step3') {
+        updateReviewSection();
+      }
+    }
+    
+    function updateReviewSection() {
+      // Update selected services
+      const selectedServices = [];
+      document.querySelectorAll('.service-card.selected').forEach(card => {
+        selectedServices.push(card.querySelector('h3').textContent);
+      });
+      
+      const servicesReview = document.getElementById('review-services');
+      if (selectedServices.length > 0) {
+        servicesReview.innerHTML = selectedServices.join('<br>');
+      } else {
+        servicesReview.textContent = 'No services selected';
+      }
+      
+      // Update personal information
+      const fullName = document.getElementById('fullname').value;
+      const email = document.getElementById('email').value;
+      const phone = document.getElementById('phone').value;
+      const address = document.getElementById('address').value;
+      
+      const personalReview = document.getElementById('review-personal');
+      if (fullName) {
+        personalReview.innerHTML = `
+          <strong>Name:</strong> ${fullName}<br>
+          <strong>Email:</strong> ${email}<br>
+          <strong>Phone:</strong> ${phone}<br>
+          <strong>Address:</strong> ${address}
+        `;
+      } else {
+        personalReview.textContent = 'No information provided';
+      }
+      
+      // Update purpose
+      const purposeSelect = document.getElementById('purpose');
+      const purposeReview = document.getElementById('review-purpose');
+      if (purposeSelect.value) {
+        purposeReview.textContent = purposeSelect.options[purposeSelect.selectedIndex].text;
+      } else {
+        purposeReview.textContent = 'Not specified';
+      }
+    }
+  </script>
+</body>
+</html>
