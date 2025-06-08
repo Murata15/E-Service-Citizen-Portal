@@ -1,0 +1,749 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Building Permit - ServeEase</title>
+  <link href="https://fonts.googleapis.com/css2?family=Jost:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <style>
+    :root {
+      --primary: #1B4543;       /* Deep teal */
+      --primary-light: #2D5F5D; 
+      --secondary: #F0BE6F;     /* Warm gold */
+      --accent: #B3D0C6;        /* Soft mint */
+      --dark: #0D2A28;          
+      --light: #F7F9F8;         
+      --gray: #7A9E99;         
+    }
+    
+    body {
+      font-family: 'Jost', sans-serif;
+      background-color: var(--light);
+      margin: 0;
+      padding: 0;
+      color: var(--dark);
+      line-height: 1.6;
+    }
+    
+    /* Header - Consistent with main site */
+    .topbar {
+      background: white;
+      box-shadow: 0 2px 15px rgba(27, 69, 67, 0.1);
+      padding: 1rem 2rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    
+    .logo-container {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+    
+    .logo {
+      height: 40px;
+    }
+    
+    .brand {
+      font-weight: 700;
+      font-size: 1.5rem;
+      color: var(--primary);
+    }
+    
+    .auth-links a {
+      margin-left: 20px;
+      text-decoration: none;
+      color: var(--primary);
+      font-weight: 500;
+      transition: all 0.3s;
+    }
+    
+    /* servc page cont. */
+    .service-container {
+      max-width: 1200px;
+      margin: 2rem auto;
+      padding: 0 2rem;
+      display: grid;
+      grid-template-columns: 1fr 350px;
+      gap: 2rem;
+    }
+    
+    /* for brdc navigation :> */
+    .breadcrumb {
+      grid-column: 1 / -1;
+      padding: 1rem 0;
+      font-size: 0.9rem;
+    }
+    
+    .breadcrumb a {
+      color: var(--primary);
+      text-decoration: none;
+    }
+    
+    .breadcrumb a:hover {
+      text-decoration: underline;
+    }
+    
+    .breadcrumb span {
+      color: var(--gray);
+      margin: 0 8px;
+    }
+    
+    /* main srvs cont :> */
+    .service-main {
+      background: white;
+      border-radius: 12px;
+      padding: 2rem;
+      box-shadow: 0 5px 15px rgba(27, 69, 67, 0.05);
+    }
+    
+    .service-header {
+      display: flex;
+      align-items: center;
+      margin-bottom: 1.5rem;
+      padding-bottom: 1.5rem;
+      border-bottom: 2px solid var(--accent);
+    }
+    
+    .service-icon {
+      width: 80px;
+      height: 80px;
+      background: linear-gradient(135deg, var(--primary), var(--primary-light));
+      color: white;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 2rem;
+      margin-right: 1.5rem;
+      flex-shrink: 0;
+    }
+    
+    .service-title h1 {
+      margin: 0;
+      color: var(--primary);
+      font-size: 1.8rem;
+    }
+    
+    .service-meta {
+      display: flex;
+      gap: 1rem;
+      margin-top: 0.5rem;
+      color: var(--gray);
+      font-size: 0.9rem;
+    }
+    
+    .service-meta span {
+      display: flex;
+      align-items: center;
+      gap: 5px;
+    }
+    
+    /* servc deets sec */
+    .service-section {
+      margin-bottom: 2.5rem;
+    }
+    
+    .service-section h2 {
+      color: var(--primary);
+      margin-top: 0;
+      position: relative;
+      padding-bottom: 0.5rem;
+    }
+    
+    .service-section h2:after {
+      content: '';
+      position: absolute;
+      width: 60px;
+      height: 3px;
+      background: var(--secondary);
+      bottom: 0;
+      left: 0;
+    }
+    
+    .requirements-list {
+      list-style-type: none;
+      padding: 0;
+    }
+    
+    .requirements-list li {
+      padding: 0.8rem 0;
+      border-bottom: 1px solid var(--accent);
+      display: flex;
+      align-items: flex-start;
+      gap: 10px;
+    }
+    
+    .requirements-list li:before {
+      content: '\f058';
+      font-family: 'Font Awesome 6 Free';
+      font-weight: 900;
+      color: var(--secondary);
+      margin-top: 3px;
+    }
+    
+    /* Process Timeline */
+    .process-timeline {
+      position: relative;
+      padding-left: 30px;
+      margin: 2rem 0;
+    }
+    
+    .process-timeline:before {
+      content: '';
+      position: absolute;
+      left: 10px;
+      top: 0;
+      bottom: 0;
+      width: 2px;
+      background: var(--accent);
+    }
+    
+    .process-step {
+      position: relative;
+      padding-bottom: 2rem;
+    }
+    
+    .process-step:last-child {
+      padding-bottom: 0;
+    }
+    
+    .process-step:before {
+      content: '';
+      position: absolute;
+      left: -30px;
+      top: 5px;
+      width: 20px;
+      height: 20px;
+      border-radius: 50%;
+      background: var(--secondary);
+      border: 4px solid white;
+      box-shadow: 0 0 0 2px var(--secondary);
+    }
+    
+    .process-step h3 {
+      margin: 0 0 0.5rem 0;
+      color: var(--primary);
+    }
+    
+    .process-step p {
+      margin: 0;
+      color: var(--gray);
+      font-size: 0.95rem;
+    }
+    
+    /* Service Sidebar */
+    .service-sidebar {
+      position: sticky;
+      top: 20px;
+      align-self: start;
+    }
+    
+    .action-card {
+      background: white;
+      border-radius: 12px;
+      padding: 1.5rem;
+      box-shadow: 0 5px 15px rgba(27, 69, 67, 0.05);
+      margin-bottom: 1.5rem;
+      border-top: 4px solid var(--secondary);
+    }
+    
+    .action-card h3 {
+      margin-top: 0;
+      color: var(--primary);
+    }
+    
+    .action-btn {
+      display: block;
+      width: 100%;
+      padding: 12px;
+      background: var(--primary);
+      color: white;
+      border: none;
+      border-radius: 6px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.3s;
+      text-align: center;
+      margin: 1rem 0;
+      text-decoration: none;
+    }
+    
+    .action-btn:hover {
+      background: var(--primary-light);
+      transform: translateY(-2px);
+      box-shadow: 0 4px 8px rgba(27, 69, 67, 0.2);
+    }
+    
+    .action-btn.secondary {
+      background: white;
+      color: var(--primary);
+      border: 2px solid var(--accent);
+    }
+    
+    .action-btn.secondary:hover {
+      background: var(--light);
+    }
+    
+    .info-box {
+      background: var(--light);
+      border-left: 4px solid var(--secondary);
+      padding: 1rem;
+      border-radius: 0 4px 4px 0;
+      margin: 1.5rem 0;
+    }
+    
+    .info-box h4 {
+      margin: 0 0 0.5rem 0;
+      color: var(--primary);
+    }
+    
+    .info-box p {
+      margin: 0;
+      font-size: 0.9rem;
+      color: var(--gray);
+    }
+    
+    /* Related Services */
+    .related-services {
+      background: white;
+      border-radius: 12px;
+      padding: 1.5rem;
+      box-shadow: 0 5px 15px rgba(27, 69, 67, 0.05);
+    }
+    
+    .related-services h3 {
+      margin-top: 0;
+      color: var(--primary);
+      padding-bottom: 0.5rem;
+      border-bottom: 2px solid var(--accent);
+    }
+    
+    .related-service {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      padding: 0.8rem 0;
+      border-bottom: 1px solid var(--accent);
+    }
+    
+    .related-service:last-child {
+      border-bottom: none;
+    }
+    
+    .related-icon {
+      width: 40px;
+      height: 40px;
+      background: var(--light);
+      border-radius: 8px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--primary);
+      flex-shrink: 0;
+    }
+    
+    .related-service a {
+      color: var(--primary);
+      text-decoration: none;
+      font-weight: 500;
+      transition: all 0.2s;
+    }
+    
+    .related-service a:hover {
+      color: var(--secondary);
+    }
+    
+    /* FAQ Section */
+    .faq-item {
+      margin-bottom: 1rem;
+      border: 1px solid var(--accent);
+      border-radius: 8px;
+      overflow: hidden;
+    }
+    
+    .faq-question {
+      background: var(--light);
+      padding: 1rem;
+      font-weight: 600;
+      cursor: pointer;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    
+    .faq-question:after {
+      content: '\f078';
+      font-family: 'Font Awesome 6 Free';
+      font-weight: 900;
+      font-size: 0.8rem;
+      transition: transform 0.3s;
+    }
+    
+    .faq-question.active:after {
+      transform: rotate(180deg);
+    }
+    
+    .faq-answer {
+      padding: 0 1rem;
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.3s, padding 0.3s;
+    }
+    
+    .faq-answer.show {
+      padding: 1rem;
+      max-height: 500px;
+    }
+    
+    /* Footer - Consistent with main site */
+    .footer {
+      background: var(--primary);
+      color: white;
+      padding: 3rem 2rem;
+      margin-top: 3rem;
+    }
+    
+    .footer-content {
+      max-width: 1200px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 2rem;
+    }
+    
+    .footer-section h3 {
+      color: var(--secondary);
+      margin-bottom: 1rem;
+    }
+    
+    .footer-links {
+      list-style: none;
+      padding: 0;
+    }
+    
+    .footer-links a {
+      color: var(--accent);
+      text-decoration: none;
+      transition: all 0.2s;
+    }
+    
+    .footer-links a:hover {
+      color: var(--secondary);
+    }
+    
+    /* Responsive Adjustments */
+    @media (max-width: 900px) {
+      .service-container {
+        grid-template-columns: 1fr;
+      }
+      
+      .service-sidebar {
+        grid-row: 2;
+        position: static;
+      }
+    }
+    
+    @media (max-width: 600px) {
+      .service-header {
+        flex-direction: column;
+        text-align: center;
+      }
+      
+      .service-icon {
+        margin-right: 0;
+        margin-bottom: 1rem;
+      }
+      
+      .service-meta {
+        justify-content: center;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header class="topbar">
+    <div class="logo-container">
+      <img src="../resources/serveease logo.png" alt="ServeEase Logo" class="logo">
+      <span class="brand">ServeEase</span>
+    </div>
+    <div class="auth-links">
+      <a href="../signin.html"><i class="fas fa-sign-in-alt"></i> Sign In</a>
+      <a href="../signup.html"><i class="fas fa-user-plus"></i> Sign Up</a>
+    </div>
+  </header>
+
+  <div class="service-container">
+    <div class="breadcrumb">
+      <a href="../index.html">Home</a>
+      <span>/</span>
+      <a href="../services.html">All Services</a>
+      <span>/</span>
+      <a href="#">ID Card Application</a>
+    </div>
+
+     <main class="service-main">
+  <div class="service-header">
+    <div class="service-icon">
+      <i class="fas fa-id-card"></i>
+    </div>
+    <div class="service-title">
+      <h1>ID Card Application</h1>
+      <div class="service-meta">
+        <span><i class="far fa-clock"></i> Processing: 1-3 business days</span>
+        <span><i class="fas fa-tag"></i> Category: Identity Services</span>
+        <span><i class="fas fa-user-check"></i> Most Requested</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="service-section">
+    <h2>Service Description</h2>
+    <p>Apply for a government-issued ID card used for identification, transactions, and access to public services within Apsay-Umay City. The card includes a photo, full name, birth date, and a unique ID number.</p>
+    <p>This service is open to all residents 15 years and older. Minors must be accompanied by a guardian during application.</p>
+  </div>
+
+  <div class="service-section">
+    <h2>Requirements</h2>
+    <ul class="requirements-list">
+      <li>Completed ID Card Application Form</li>
+      <li>Original and photocopy of Birth Certificate</li>
+      <li>One (1) government-issued valid ID (if available)</li>
+      <li>Proof of Residency (e.g., utility bill, barangay certificate)</li>
+      <li>Recent 1x1 or 2x2 photo (white background)</li>
+      <li>Payment of application fee</li>
+    </ul>
+
+    <div class="info-box">
+      <h4><i class="fas fa-info-circle"></i> Reminder</h4>
+      <p>Photos can be taken onsite free of charge. Applicants must wear appropriate attire.</p>
+    </div>
+  </div>
+
+  <div class="service-section">
+    <h2>Application Process</h2>
+    <div class="process-timeline">
+      <div class="process-step">
+        <h3>1. Prepare Documents</h3>
+        <p>Gather all required documents and ensure photocopies are clear and legible.</p>
+      </div>
+      <div class="process-step">
+        <h3>2. Submit Application</h3>
+        <p>Visit your nearest ID Application Center or apply online via ServeEase Portal.</p>
+      </div>
+      <div class="process-step">
+        <h3>3. Photo Capture & Biometrics</h3>
+        <p>Have your photo taken and fingerprint scan recorded for system identification.</p>
+      </div>
+      <div class="process-step">
+        <h3>4. Verification</h3>
+        <p>All submitted documents are verified by municipal ID processing staff.</p>
+      </div>
+      <div class="process-step">
+        <h3>5. Claim ID Card</h3>
+        <p>Receive notification once your ID card is ready. Claim it in person or request delivery.</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="service-section">
+    <h2>Fees & Payments</h2>
+    <ul class="requirements-list">
+      <li>Standard ID Application: PHP 150.00</li>
+      <li>Replacement for Lost ID: PHP 200.00</li>
+      <li>Damaged Card Replacement: PHP 100.00</li>
+    </ul>
+    <p>Fees can be paid via the ServeEase portal or at the city treasurer's cashier. Discounts apply for senior citizens and PWDs.</p>
+  </div>
+
+  <div class="service-section">
+    <h2>Frequently Asked Questions</h2>
+    <div class="faq-item">
+      <div class="faq-question">
+        What if I lose my ID card?
+      </div>
+      <div class="faq-answer">
+        <p>You must report it immediately. You’ll need to file an affidavit of loss and pay the replacement fee to reissue a new card.</p>
+      </div>
+    </div>
+
+    <div class="faq-item">
+      <div class="faq-question">
+        Can I update my ID if my address or name changes?
+      </div>
+      <div class="faq-answer">
+        <p>Yes. Submit the change request form along with valid proof (e.g., marriage certificate, barangay certificate) and your existing ID card.</p>
+      </div>
+    </div>
+
+    <div class="faq-item">
+      <div class="faq-question">
+        How long does it take to get my ID?
+      </div>
+      <div class="faq-answer">
+        <p>Processing usually takes 1-3 business days. Some locations offer express same-day issuance for urgent requests.</p>
+      </div>
+    </div>
+  </div>
+</main>
+
+
+    <aside class="service-sidebar">
+      <div class="action-card">
+        <h3>Apply for This Service</h3>
+        <p>Start your application process by selecting an option below:</p>
+        
+        <a href="../applicationpage.html" class="action-btn">
+          <i class="fas fa-laptop"></i> Apply Online
+        </a>
+        
+        <a href="../applicationpage.html" class="action-btn secondary">
+          <i class="fas fa-calendar-alt"></i> Schedule In-Person
+        </a>
+        
+        <div class="info-box">
+          <h4><i class="fas fa-download"></i> Download Forms</h4>
+          <p><a href="#" style="color: var(--primary);">ID Card Registration Form (PDF)</a></p>
+          <p><a href="#" style="color: var(--primary);">Requirements Checklist (PDF)</a></p>
+        </div>
+      </div>
+
+      <div class="action-card">
+        <h3>Need Help?</h3>
+        <p>Our specialists are available to assist you:</p>
+        
+        <div style="display: flex; gap: 10px; margin: 1rem 0;">
+          <a href="#" style="flex:1; background: var(--accent); color: var(--primary); text-align: center; padding: 10px; border-radius: 6px; text-decoration: none;">
+            <i class="fas fa-phone"></i> Call
+          </a>
+          <a href="#" style="flex:1; background: var(--accent); color: var(--primary); text-align: center; padding: 10px; border-radius: 6px; text-decoration: none;">
+            <i class="fas fa-comments"></i> Chat
+          </a>
+        </div>
+        
+        <p style="font-size: 0.9rem; text-align: center; color: var(--gray);">
+          <i class="fas fa-clock"></i> Mon-Fri: 8:00 AM - 5:00 PM
+        </p>
+      </div>
+
+      <div class="related-services">
+        <h3>Related Services</h3>
+        
+        <div class="related-service">
+          <div class="related-icon">
+            <i class="fas fa-tools"></i>
+          </div>
+          <a href="#">Renovation</a>
+        </div>
+        
+        <div class="related-service">
+          <div class="related-icon">
+            <i class="fas fa-water"></i>
+          </div>
+          <a href="#">Plumbing Permit</a>
+        </div>
+        
+        <div class="related-service">
+          <div class="related-icon">
+            <i class="fas fa-bolt"></i>
+          </div>
+          <a href="#">Electrical Permit</a>
+        </div>
+        
+        <div class="related-service">
+          <div class="related-icon">
+            <i class="fas fa-vector-square"></i>
+          </div>
+          <a href="#">Zoning Verification</a>
+        </div>
+      </div>
+    </aside>
+  </div>
+
+  <footer class="footer">
+    <div class="footer-content">
+      <div class="footer-section">
+        <h3>Quick Links</h3>
+        <ul class="footer-links">
+          <li><a href="#">Home</a></li>
+          <li><a href="#">All Services</a></li>
+          <li><a href="#">Service Status</a></li>
+          <li><a href="#">Announcements</a></li>
+        </ul>
+      </div>
+      
+      <div class="footer-section">
+        <h3>Information</h3>
+        <ul class="footer-links">
+          <li><a href="#">About Us</a></li>
+          <li><a href="#">Contact</a></li>
+          <li><a href="#">FAQ</a></li>
+          <li><a href="#">Help Center</a></li>
+        </ul>
+      </div>
+      
+      <div class="footer-section">
+        <h3>Legal</h3>
+        <ul class="footer-links">
+          <li><a href="#">Privacy Policy</a></li>
+          <li><a href="#">Terms of Service</a></li>
+          <li><a href="#">Accessibility</a></li>
+          <li><a href="#">Sitemap</a></li>
+        </ul>
+      </div>
+      
+      <div class="footer-section">
+        <h3>Connect With Us</h3>
+        <p><i class="fas fa-envelope"></i> email@gmail.com</p>
+        <p><i class="fas fa-phone"></i> +63 012 3456 7890</p>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    // for faq accordion :>
+    const faqQuestions = document.querySelectorAll('.faq-question');
+    
+    faqQuestions.forEach(question => {
+      question.addEventListener('click', () => {
+        const answer = question.nextElementSibling;
+        const isActive = question.classList.contains('active');
+        
+        // Close all answers first
+        document.querySelectorAll('.faq-answer').forEach(ans => {
+          ans.classList.remove('show');
+        });
+        document.querySelectorAll('.faq-question').forEach(q => {
+          q.classList.remove('active');
+        });
+        
+        // Open clicked if it wasn't active
+        if (!isActive) {
+          question.classList.add('active');
+          answer.classList.add('show');
+        }
+      });
+    });
+    
+    // anchor links lang itu for scrolling
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+      anchor.addEventListener('click', function(e) {
+        e.preventDefault();
+        document.querySelector(this.getAttribute('href')).scrollIntoView({
+          behavior: 'smooth'
+        });
+      });
+    });
+    
+    // Print button for clout
+    const printButton = document.getElementById('printBtn');
+    if (printButton) {
+      printButton.addEventListener('click', () => {
+        window.print();
+      });
+    }
+  </script>
+</body>
+</html>
