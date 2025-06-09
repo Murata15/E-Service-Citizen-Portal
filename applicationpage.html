@@ -307,6 +307,18 @@
   </footer>
 
   <script>
+  document.addEventListener('DOMContentLoaded', function () {
+    const serviceCards = document.querySelectorAll('.service-card');
+
+    serviceCards.forEach(card => {
+      card.addEventListener('click', () => {
+        card.classList.toggle('selected');
+      });
+    });
+  });
+</script>
+
+  <script>
     // Service selection
     const serviceCards = document.querySelectorAll('.service-card');
     const selectServiceBtns = document.querySelectorAll('.select-service');
