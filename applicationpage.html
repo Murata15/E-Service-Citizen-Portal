@@ -3,177 +3,102 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>ServeEase Service Registration</title>
-  <link rel="stylesheet" href="applicationpagestyle.css" />
+  <title>ServeEase — Service Registration</title>
+  <link rel="stylesheet" href="applicationpagestyle.css">
+  <script defer src="register.js"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Jost:wght@400;500;600;700&display=swap" rel="stylesheet"/>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" crossorigin="anonymous" />
-  <link href="https://fonts.googleapis.com/css2?family=Jost:wght@300;400;600&display=swap" rel="stylesheet"/>
+
 </head>
 <body>
-  <header class="header">
-    <a href="index.html" class="logo"><img src="img/serveease-logo.png" alt="ServeEase Logo" /></a>
-    <nav>
-      <ul class="nav-links">
-        <li><a href="index.html">Home</a></li>
-        <li><a href="services.html">All Services</a></li>
-        <li><a href="signin.html">Sign In</a></li>
-        <li><a href="signup.html">Sign Up</a></li>
-      </ul>
-    </nav>
+  <header class="topbar">
+    <div class="logo-container">
+      <img src="img/serveease-logo.png" alt="ServeEase Logo" class="logo"/>
+      <span class="brand">ServeEase</span>
+    </div>
+    <div class="auth-links">
+      <a href="signin.html"><i class="fas fa-sign-in-alt"></i> Sign In</a>
+      <a href="signup.html"><i class="fas fa-user-plus"></i> Sign Up</a>
+    </div>
   </header>
 
-  <main class="main-container">
+  <main class="service-container">
     <nav class="breadcrumb" aria-label="Breadcrumb">
-      <a href="index.html">Home</a> <span>/</span>
-      <a href="services.html">All Services</a> <span>/</span>
-      <span aria-current="page">Register for Services</span>
+      <a href="index.html">Home</a><span>/</span>
+      <a href="services.html">All Services</a><span>/</span>
+      <span aria-current="page">Service Registration</span>
     </nav>
 
-    <section class="step-form">
+    <section class="service-main">
       <h1>Service Registration</h1>
       <div class="steps-indicator">
-        <span class="step active">1</span>
-        <span class="step">2</span>
-        <span class="step">3</span>
-        <span class="step">4</span>
+        <div class="step active" data-step="1">1</div>
+        <div class="step" data-step="2">2</div>
+        <div class="step" data-step="3">3</div>
       </div>
 
-      <form id="registrationForm" method="POST" action="#">
-        <div class="step-content active" id="step1">
-          <h2>Step 1: Choose a Service</h2>
+      <form id="registrationForm">
+        <!-- Step 1 -->
+        <div class="form-section active" id="step1">
+          <h2>Select Service</h2>
           <div class="services-grid">
             <label class="service-card">
-              <input type="radio" name="service" value="Building Permit" required />
-              <div class="card-content">
+              <input type="radio" name="service" value="Building Permit" required>
+              <div class="service-content">
                 <i class="fas fa-home"></i>
                 <h3>Building Permit</h3>
-                <p><strong>Duration:</strong> 5-7 days</p>
-                <p><strong>Cost:</strong> Varies</p>
-                <p>Required for all new construction or renovations.</p>
               </div>
             </label>
             <label class="service-card">
-              <input type="radio" name="service" value="Business Registration" />
-              <div class="card-content">
-                <i class="fas fa-briefcase"></i>
-                <h3>Business Registration</h3>
-                <p><strong>Duration:</strong> 3-5 days</p>
-                <p><strong>Cost:</strong> ₱1,000 - ₱3,000</p>
-                <p>Register your business to operate legally.</p>
+              <input type="radio" name="service" value="Health Services">
+              <div class="service-content">
+                <i class="fas fa-heartbeat"></i>
+                <h3>Health Services</h3>
               </div>
             </label>
           </div>
-          <button type="button" class="next-step" data-next="step2">Next</button>
-        </div>
-
-        <div class="step-content" id="step2">
-          <h2>Step 2: Enter Personal Information</h2>
-          <label for="fullname">Full Name:</label>
-          <input type="text" id="fullname" name="fullname" required aria-describedby="fullnameHelp" />
-          <span class="form-error" id="fullnameHelp">Please enter your full name.</span>
-
-          <label for="email">Email Address:</label>
-          <input type="email" id="email" name="email" required aria-describedby="emailHelp" />
-          <span class="form-error" id="emailHelp">Enter a valid email address.</span>
-
-          <label for="contact">Contact Number:</label>
-          <input type="tel" id="contact" name="contact" required aria-describedby="contactHelp" />
-          <span class="form-error" id="contactHelp">Enter your contact number.</span>
-
-          <label for="address">Home Address:</label>
-          <input type="text" id="address" name="address" required />
-
-          <button type="button" class="prev-step" data-prev="step1">Back</button>
-          <button type="button" class="next-step" data-next="step3">Next</button>
-        </div>
-
-        <div class="step-content" id="step3">
-          <h2>Step 3: Provide Purpose</h2>
-          <label for="purpose">Purpose of Application:</label>
-          <textarea id="purpose" name="purpose" rows="4" required></textarea>
-
-          <button type="button" class="prev-step" data-prev="step2">Back</button>
-          <button type="button" class="next-step" data-next="step4">Next</button>
-        </div>
-
-        <div class="step-content" id="step4">
-          <h2>Step 4: Review and Submit</h2>
-          <div class="review-box">
-            <h3>Selected Service:</h3>
-            <p id="review-services"></p>
-            <h3>Personal Information:</h3>
-            <p id="review-personal"></p>
-            <h3>Purpose:</h3>
-            <p id="review-purpose"></p>
+          <div class="form-actions">
+            <button type="button" class="action-btn btn-primary next-step" data-next="step2">Continue</button>
           </div>
+        </div>
 
-          <button type="button" class="prev-step" data-prev="step3">Back</button>
-          <button type="submit">Submit Application</button>
+        <!-- Step 2 -->
+        <div class="form-section" id="step2">
+          <h2>Enter Your Details</h2>
+          <div class="form-row"><label for="fullname">Full Name</label><input type="text" id="fullname" name="fullname" required></div>
+          <div class="form-row"><label for="contact">Contact Number</label><input type="tel" id="contact" name="contact" required></div>
+          <div class="form-row"><label for="email">Email Address</label><input type="email" id="email" name="email" required></div>
+          <div class="form-row"><label for="address">Address</label><textarea id="address" name="address" rows="3" required></textarea></div>
+          <div class="form-actions">
+            <button type="button" class="action-btn secondary prev-step" data-prev="step1">Back</button>
+            <button type="button" class="action-btn btn-primary next-step" data-next="step3">Continue</button>
+          </div>
+        </div>
+
+        <!-- Step 3 -->
+        <div class="form-section" id="step3">
+          <h2>Review & Submit</h2>
+          <div class="review-box">
+            <p><strong>Service:</strong> <span id="review-service"></span></p>
+            <p><strong>Name:</strong> <span id="review-name"></span></p>
+            <p><strong>Contact:</strong> <span id="review-contact"></span></p>
+            <p><strong>Email:</strong> <span id="review-email"></span></p>
+            <p><strong>Address:</strong> <span id="review-address"></span></p>
+          </div>
+          <div class="form-actions">
+            <button type="button" class="action-btn secondary prev-step" data-prev="step2">Back</button>
+            <button type="submit" class="action-btn btn-primary">Submit</button>
+          </div>
         </div>
       </form>
-
-      <div class="confirmation-message" id="confirmation" role="alert" style="display: none;">
-        <div class="confirmation-icon" aria-label="Success Icon">
-          <i class="fas fa-check"></i>
-        </div>
-        <h2>Application Submitted!</h2>
-        <p>Your reference number is <span id="ref-number">APS-XXXX-XXXX</span>.</p>
-        <a href="services.html" class="btn">Return to Services</a>
-      </div>
     </section>
   </main>
 
   <footer class="footer">
-    <p>&copy; 2025 ServeEase. All rights reserved.</p>
+    <div class="footer-content">
+      <div class="footer-section"><h3>Quick Links</h3><ul><li><a href="#">Home</a></li><li><a href="#">Services</a></li></ul></div>
+      <div class="footer-section"><h3>Contact</h3><p>📧 services@serveease.ph</p><p>📞 +63 123 456 7890</p></div>
+    </div>
   </footer>
-
-  <script>
-    // Step navigation
-    document.querySelectorAll('.next-step').forEach(btn => {
-      btn.addEventListener('click', () => {
-        const current = btn.closest('.step-content');
-        const nextId = btn.dataset.next;
-        document.querySelectorAll('.step-content').forEach(s => s.classList.remove('active'));
-        document.getElementById(nextId).classList.add('active');
-
-        // Update step indicator
-        const index = Array.from(document.querySelectorAll('.step-content')).findIndex(s => s.id === nextId);
-        document.querySelectorAll('.step').forEach((step, i) => {
-          step.classList.toggle('active', i <= index);
-        });
-
-        if (nextId === "step4") {
-          // Review population
-          document.getElementById('review-services').textContent = document.querySelector('input[name="service"]:checked')?.value || 'N/A';
-          document.getElementById('review-personal').textContent =
-            `Name: ${document.getElementById('fullname').value}, Email: ${document.getElementById('email').value}, Contact: ${document.getElementById('contact').value}, Address: ${document.getElementById('address').value}`;
-          document.getElementById('review-purpose').textContent = document.getElementById('purpose').value;
-        }
-      });
-    });
-
-    document.querySelectorAll('.prev-step').forEach(btn => {
-      btn.addEventListener('click', () => {
-        const prevId = btn.dataset.prev;
-        document.querySelectorAll('.step-content').forEach(s => s.classList.remove('active'));
-        document.getElementById(prevId).classList.add('active');
-
-        const index = Array.from(document.querySelectorAll('.step-content')).findIndex(s => s.id === prevId);
-        document.querySelectorAll('.step').forEach((step, i) => {
-          step.classList.toggle('active', i <= index);
-        });
-      });
-    });
-
-    // Form submission
-    document.getElementById('registrationForm').addEventListener('submit', function (e) {
-      e.preventDefault();
-      const refNo = `APS-${new Date().getFullYear()}-${Math.floor(100000 + Math.random() * 900000)}`;
-      document.getElementById('ref-number').textContent = refNo;
-
-      this.style.display = 'none';
-      document.querySelector('.steps-indicator').style.display = 'none';
-      document.getElementById('confirmation').style.display = 'block';
-    });
-  </script>
 </body>
 </html>
