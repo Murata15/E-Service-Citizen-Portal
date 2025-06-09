@@ -410,5 +410,65 @@
       }
     }
   </script>
+
+  <script>
+  const serviceCards = document.querySelectorAll('.service-card');
+  const selectedServices = new Set();
+
+  serviceCards.forEach(card => {
+    card.addEventListener('click', () => {
+      const service = card.getAttribute('data-service');
+      card.classList.toggle('selected');
+
+      if (card.classList.contains('selected')) {
+        selectedServices.add(service);
+      } else {
+        selectedServices.delete(service);
+      }
+
+      updateReviewSection();
+    });
+  });
+
+  function updateReviewSection() {
+    const reviewServices = document.getElementById('review-services');
+    if (selectedServices.size > 0) {
+      reviewServices.textContent = Array.from(selectedServices).join(', ');
+    } else {
+      reviewServices.textContent = 'No services selected';
+    }
+  }
+
+  // Navigation between steps
+  document.querySelectorAll('.next-step').forEach(button => {
+    button.addEventListener('click', () => {
+      const nextId = button.getAttribute('data-next');
+      showStep(nextId);
+    });
+  });
+
+  document.querySelectorAll('.prev-step').forEach(button => {
+    button.addEventListener('click', () => {
+      const prevId = button.getAttribute('data-prev');
+      showStep(prevId);
+    });
+  });
+
+  function showStep(stepId) {
+    document.querySelectorAll('.form-section').forEach(section => {
+      section.classList.remove('active');
+    });
+    document.getElementById(stepId).classList.add('active');
+
+    document.querySelectorAll('.registration-steps .step').forEach(step => {
+      if (step.getAttribute('data-step') === stepId.replace('step', '')) {
+        step.classList.add('active');
+      } else {
+        step.classList.remove('active');
+      }
+    });
+  }
+</script>
+
 </body>
 </html>
