@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Admin Dashboard - ServeEase</title>
+  <link rel="stylesheet" href="admin-style.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Jost&display=swap" rel="stylesheet">
+</head>
+<body>
+  <div class="dashboard-header">
+    <h1>ServeEase Admin Panel</h1>
+    <button onclick="logout()">Logout</button>
+  </div>
+
+  <div class="content">
+    <h2>Submitted Applications</h2>
+    <div id="applicationsContainer">
+      <!-- Dynamically filled with application cards -->
+    </div>
+  </div>
+
+  <script>
+    if (!localStorage.getItem("adminLoggedIn")) {
+      window.location.href = "admin-login.html";
+    }
+
+    function logout() {
+      localStorage.removeItem("adminLoggedIn");
+      window.location.href = "admin-login.html";
+    }
+
+    const applications = JSON.parse(localStorage.getItem("applications")) || [];
+
+    const container = document.getElementById("applicationsContainer");
+
+    if (applications.length === 0) {
+      container.innerHTML = "<p>No applications submitted yet.</p>";
+    } else {
+      applications.forEach((app, index) => {
+        const card = document.createElement("div");
+        card.className = "application-card";
+        card.innerHTML = `
+          <h3>Application #${index + 1}</h3>
+          <p><strong>Service:</strong> ${app.service}</p>
+          <p><strong>Name:</strong> ${app.name}</p>
+          <p><strong>Email:</strong> ${app.email}</p>
+          <p><strong>Status:</strong> <span class="status">${app.status}</span></p>
+        `;
+        container.appendChild(card);
+      });
+    }
+  </script>
+</body>
+</html>
