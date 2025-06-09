@@ -1,486 +1,179 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Register for Services - ServeEase</title>
-  <link rel="stylesheet" href="applicationpagestyle.css" />
-  <link href="https://fonts.googleapis.com/css2?family=Jost:wght@400;500;600;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"> 
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>ServeEase Service Registration</title>
+  <link rel="stylesheet" href="css/applicationpagestyle.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" crossorigin="anonymous" />
+  <link href="https://fonts.googleapis.com/css2?family=Jost:wght@300;400;600&display=swap" rel="stylesheet"/>
 </head>
-
 <body>
-  <header class="topbar">
-    <div class="logo-container">
-      <img src="resources/serveease logo.png" alt="ServeEase Logo" class="logo">
-      <span class="brand">ServeEase</span>
-    </div>
-    <div class="auth-links">
-      <a href="signin.html"><i class="fas fa-sign-in-alt"></i> Sign In</a>
-      <a href="signup.html"><i class="fas fa-user-plus"></i> Sign Up</a>
-    </div>
+  <header class="header">
+    <a href="index.html" class="logo"><img src="img/serveease-logo.png" alt="ServeEase Logo" /></a>
+    <nav>
+      <ul class="nav-links">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="services.html">All Services</a></li>
+        <li><a href="signin.html">Sign In</a></li>
+        <li><a href="signup.html">Sign Up</a></li>
+      </ul>
+    </nav>
   </header>
 
-  <div class="registration-container">
-    <div class="breadcrumb">
-      <a href="index.html">Home</a>
-      <span>/</span>
-      <a href="services.html">All Services</a>
-      <span>/</span>
-      <a href="#">Register for Services</a>
-    </div>
+  <main class="main-container">
+    <nav class="breadcrumb" aria-label="Breadcrumb">
+      <a href="index.html">Home</a> <span>/</span>
+      <a href="services.html">All Services</a> <span>/</span>
+      <span aria-current="page">Register for Services</span>
+    </nav>
 
-    <div class="page-header">
-      <h1>Register for City Services</h1>
-      <p>Select and register for the services you need from Apsay-Umay City</p>
-    </div>
+    <section class="step-form">
+      <h1>Service Registration</h1>
+      <div class="steps-indicator">
+        <span class="step active">1</span>
+        <span class="step">2</span>
+        <span class="step">3</span>
+        <span class="step">4</span>
+      </div>
 
-    <div class="registration-steps">
-      <div class="step active" data-step="1">
-        <div class="step-number">1</div>
-        <div class="step-title">Select Services</div>
-      </div>
-      <div class="step" data-step="2">
-        <div class="step-number">2</div>
-        <div class="step-title">Provide Information</div>
-      </div>
-      <div class="step" data-step="3">
-        <div class="step-number">3</div>
-        <div class="step-title">Review & Submit</div>
-      </div>
-      <div class="step" data-step="4">
-        <div class="step-number">4</div>
-        <div class="step-title">Confirmation</div>
-      </div>
-    </div>
-
-    <div class="registration-form">
-      <!-- Step 1: Service Selection -->
-      <div class="form-section active" id="step1">
-        <h2>Select Services</h2>
-        <p>Choose the services you want to register for from the options below:</p>
-        
-        <div class="services-grid">
-          <!-- Building Permit Card -->
-          <div class="service-card" data-service="building-permit">
-            <div class="select-service"></div>
-            <div class="service-card-header">
-              <div class="service-icon">
+      <form id="registrationForm" method="POST" action="#">
+        <div class="step-content active" id="step1">
+          <h2>Step 1: Choose a Service</h2>
+          <div class="services-grid">
+            <label class="service-card">
+              <input type="radio" name="service" value="Building Permit" required />
+              <div class="card-content">
                 <i class="fas fa-home"></i>
+                <h3>Building Permit</h3>
+                <p><strong>Duration:</strong> 5-7 days</p>
+                <p><strong>Cost:</strong> Varies</p>
+                <p>Required for all new construction or renovations.</p>
               </div>
-              <h3>Building Permit</h3>
-              <div class="service-meta">
-                <span><i class="far fa-clock"></i> 5-7 days</span>
-                <span><i class="fas fa-tag"></i> Varies</span>
-              </div>
-            </div>
-            <div class="service-card-body">
-              <p>Required for all new construction, renovations, additions, and demolition projects.</p>
-            </div>
-          </div>
-
-          <!-- Business License Card -->
-          <div class="service-card" data-service="business-license">
-            <div class="select-service"></div>
-            <div class="service-card-header">
-              <div class="service-icon">
+            </label>
+            <label class="service-card">
+              <input type="radio" name="service" value="Business Registration" />
+              <div class="card-content">
                 <i class="fas fa-briefcase"></i>
+                <h3>Business Registration</h3>
+                <p><strong>Duration:</strong> 3-5 days</p>
+                <p><strong>Cost:</strong> ₱1,000 - ₱3,000</p>
+                <p>Register your business to operate legally.</p>
               </div>
-              <h3>Business License</h3>
-              <div class="service-meta">
-                <span><i class="far fa-clock"></i> 3-5 days</span>
-                <span><i class="fas fa-tag"></i> ₱1,200</span>
-              </div>
-            </div>
-            <div class="service-card-body">
-              <p>Register new businesses or renew existing licenses with our streamlined process.</p>
-            </div>
+            </label>
           </div>
-
-          <!-- Property Tax Card -->
-          <div class="service-card" data-service="property-tax">
-            <div class="select-service"></div>
-            <div class="service-card-header">
-              <div class="service-icon">
-                <i class="fas fa-file-invoice-dollar"></i>
-              </div>
-              <h3>Property Tax</h3>
-              <div class="service-meta">
-                <span><i class="far fa-clock"></i> Instant</span>
-                <span><i class="fas fa-tag"></i> Varies</span>
-              </div>
-            </div>
-            <div class="service-card-body">
-              <p>Pay your real property taxes online with multiple payment options.</p>
-            </div>
-          </div>
-
-          <!-- Health Certificate Card -->
-          <div class="service-card" data-service="health-certificate">
-            <div class="select-service"></div>
-            <div class="service-card-header">
-              <div class="service-icon">
-                <i class="fas fa-heartbeat"></i>
-              </div>
-              <h3>Health Certificate</h3>
-              <div class="service-meta">
-                <span><i class="far fa-clock"></i> 1-2 days</span>
-                <span><i class="fas fa-tag"></i> ₱300</span>
-              </div>
-            </div>
-            <div class="service-card-body">
-              <p>Apply for food handler or sanitary permits required for food businesses.</p>
-            </div>
-          </div>
-
-          <!-- Vehicle Registration Card -->
-          <div class="service-card" data-service="vehicle-registration">
-            <div class="select-service"></div>
-            <div class="service-card-header">
-              <div class="service-icon">
-                <i class="fas fa-car"></i>
-              </div>
-              <h3>Vehicle Registration</h3>
-              <div class="service-meta">
-                <span><i class="far fa-clock"></i> 1 day</span>
-                <span><i class="fas fa-tag"></i> ₱1,800</span>
-              </div>
-            </div>
-            <div class="service-card-body">
-              <p>Register or renew your vehicle registration with our online portal.</p>
-            </div>
-          </div>
-
-          <!-- Event Permit Card -->
-          <div class="service-card" data-service="event-permit">
-            <div class="select-service"></div>
-            <div class="service-card-header">
-              <div class="service-icon">
-                <i class="fas fa-calendar-alt"></i>
-              </div>
-              <h3>Event Permit</h3>
-              <div class="service-meta">
-                <span><i class="far fa-clock"></i> 5-7 days</span>
-                <span><i class="fas fa-tag"></i> ₱500-₱2,000</span>
-              </div>
-            </div>
-            <div class="service-card-body">
-              <p>Apply for permits required for public events and gatherings.</p>
-            </div>
-          </div>
+          <button type="button" class="next-step" data-next="step2">Next</button>
         </div>
 
-        <div class="form-actions">
-          <button type="button" class="btn btn-secondary" disabled>Back</button>
-          <button type="button" class="btn btn-primary next-step" data-next="step2">Continue</button>
+        <div class="step-content" id="step2">
+          <h2>Step 2: Enter Personal Information</h2>
+          <label for="fullname">Full Name:</label>
+          <input type="text" id="fullname" name="fullname" required aria-describedby="fullnameHelp" />
+          <span class="form-error" id="fullnameHelp">Please enter your full name.</span>
+
+          <label for="email">Email Address:</label>
+          <input type="email" id="email" name="email" required aria-describedby="emailHelp" />
+          <span class="form-error" id="emailHelp">Enter a valid email address.</span>
+
+          <label for="contact">Contact Number:</label>
+          <input type="tel" id="contact" name="contact" required aria-describedby="contactHelp" />
+          <span class="form-error" id="contactHelp">Enter your contact number.</span>
+
+          <label for="address">Home Address:</label>
+          <input type="text" id="address" name="address" required />
+
+          <button type="button" class="prev-step" data-prev="step1">Back</button>
+          <button type="button" class="next-step" data-next="step3">Next</button>
         </div>
+
+        <div class="step-content" id="step3">
+          <h2>Step 3: Provide Purpose</h2>
+          <label for="purpose">Purpose of Application:</label>
+          <textarea id="purpose" name="purpose" rows="4" required></textarea>
+
+          <button type="button" class="prev-step" data-prev="step2">Back</button>
+          <button type="button" class="next-step" data-next="step4">Next</button>
+        </div>
+
+        <div class="step-content" id="step4">
+          <h2>Step 4: Review and Submit</h2>
+          <div class="review-box">
+            <h3>Selected Service:</h3>
+            <p id="review-services"></p>
+            <h3>Personal Information:</h3>
+            <p id="review-personal"></p>
+            <h3>Purpose:</h3>
+            <p id="review-purpose"></p>
+          </div>
+
+          <button type="button" class="prev-step" data-prev="step3">Back</button>
+          <button type="submit">Submit Application</button>
+        </div>
+      </form>
+
+      <div class="confirmation-message" id="confirmation" role="alert" style="display: none;">
+        <div class="confirmation-icon" aria-label="Success Icon">
+          <i class="fas fa-check"></i>
+        </div>
+        <h2>Application Submitted!</h2>
+        <p>Your reference number is <span id="ref-number">APS-XXXX-XXXX</span>.</p>
+        <a href="services.html" class="btn">Return to Services</a>
       </div>
-
-      <!-- Step 2: Information Form -->
-      <div class="form-section" id="step2">
-        <h2>Provide Your Information</h2>
-        <p>Please fill in your details to proceed with the service registration.</p>
-        
-        <div class="form-row">
-          <label for="fullname">Full Name</label>
-          <input type="text" id="fullname" name="fullname" required>
-        </div>
-        
-        <div class="form-row">
-          <label for="email">Email Address</label>
-          <input type="email" id="email" name="email" required>
-        </div>
-        
-        <div class="form-row">
-          <label for="phone">Phone Number</label>
-          <input type="tel" id="phone" name="phone" required>
-        </div>
-        
-        <div class="form-row">
-          <label for="address">Residential Address</label>
-          <textarea id="address" name="address" rows="3" required></textarea>
-        </div>
-        
-        <div class="form-row">
-          <label for="purpose">Purpose of Application</label>
-          <select id="purpose" name="purpose" required>
-            <option value="">Select purpose</option>
-            <option value="new">New Application</option>
-            <option value="renewal">Renewal</option>
-            <option value="amendment">Amendment</option>
-            <option value="other">Other</option>
-          </select>
-        </div>
-
-        <div class="form-actions">
-          <button type="button" class="btn btn-secondary prev-step" data-prev="step1">Back</button>
-          <button type="button" class="btn btn-primary next-step" data-next="step3">Continue</button>
-        </div>
-      </div>
-
-      <!-- Step 3: Review -->
-      <div class="form-section" id="step3">
-        <h2>Review Your Registration</h2>
-        <p>Please review your information before submitting your application.</p>
-        
-        <div class="review-item">
-          <h3>Selected Services</h3>
-          <div class="review-value" id="review-services">
-            No services selected
-          </div>
-        </div>
-        
-        <div class="review-item">
-          <h3>Personal Information</h3>
-          <div class="review-value" id="review-personal">
-            No information provided
-          </div>
-        </div>
-        
-        <div class="review-item">
-          <h3>Application Purpose</h3>
-          <div class="review-value" id="review-purpose">
-            Not specified
-          </div>
-        </div>
-
-        <div class="form-actions">
-          <button type="button" class="btn btn-secondary prev-step" data-prev="step2">Back</button>
-          <button type="button" class="btn btn-primary next-step" data-next="step4">Submit Application</button>
-        </div>
-      </div>
-
-      <!-- Step 4: Confirmation -->
-      <div class="form-section" id="step4">
-        <div class="confirmation-message">
-          <div class="confirmation-icon">
-            <i class="fas fa-check"></i>
-          </div>
-          <h2>Application Submitted Successfully!</h2>
-          <p>Your service registration has been received. We've sent a confirmation to your email address with your application details and next steps.</p>
-          <p>Your reference number is: <strong>APS-2023-987654</strong></p>
-          <button type="button" class="btn btn-primary" onclick="window.location.href='dashboard.html'">Go to Dashboard</button>
-        </div>
-      </div>
-    </div>
-  </div>
+    </section>
+  </main>
 
   <footer class="footer">
-    <div class="footer-content">
-      <div class="footer-section">
-        <h3>Quick Links</h3>
-        <ul class="footer-links">
-          <li><a href="#">Home</a></li>
-          <li><a href="#">All Services</a></li>
-          <li><a href="#">Service Status</a></li>
-          <li><a href="#">Announcements</a></li>
-        </ul>
-      </div>
-      
-      <div class="footer-section">
-        <h3>Information</h3>
-        <ul class="footer-links">
-          <li><a href="#">About Us</a></li>
-          <li><a href="#">Contact</a></li>
-          <li><a href="#">FAQ</a></li>
-          <li><a href="#">Help Center</a></li>
-        </ul>
-      </div>
-      
-      <div class="footer-section">
-        <h3>Legal</h3>
-        <ul class="footer-links">
-          <li><a href="#">Privacy Policy</a></li>
-          <li><a href="#">Terms of Service</a></li>
-          <li><a href="#">Accessibility</a></li>
-          <li><a href="#">Sitemap</a></li>
-        </ul>
-      </div>
-      
-      <div class="footer-section">
-        <h3>Connect With Us</h3>
-        <p><i class="fas fa-envelope"></i> services@apsayumay.gov.ph</p>
-        <p><i class="fas fa-phone"></i> +63 012 3456 7890</p>
-      </div>
-    </div>
+    <p>&copy; 2025 ServeEase. All rights reserved.</p>
   </footer>
 
   <script>
-  document.addEventListener('DOMContentLoaded', function () {
-    const serviceCards = document.querySelectorAll('.service-card');
+    // Step navigation
+    document.querySelectorAll('.next-step').forEach(btn => {
+      btn.addEventListener('click', () => {
+        const current = btn.closest('.step-content');
+        const nextId = btn.dataset.next;
+        document.querySelectorAll('.step-content').forEach(s => s.classList.remove('active'));
+        document.getElementById(nextId).classList.add('active');
 
-    serviceCards.forEach(card => {
-      card.addEventListener('click', () => {
-        card.classList.toggle('selected');
-      });
-    });
-  });
-</script>
+        // Update step indicator
+        const index = Array.from(document.querySelectorAll('.step-content')).findIndex(s => s.id === nextId);
+        document.querySelectorAll('.step').forEach((step, i) => {
+          step.classList.toggle('active', i <= index);
+        });
 
-  <script>
-    // Service selection
-    const serviceCards = document.querySelectorAll('.service-card');
-    const selectServiceBtns = document.querySelectorAll('.select-service');
-    
-    selectServiceBtns.forEach(btn => {
-      btn.addEventListener('click', function() {
-        const card = this.closest('.service-card');
-        card.classList.toggle('selected');
-      });
-    });
-    
-    // Form navigation
-    const nextStepBtns = document.querySelectorAll('.next-step');
-    const prevStepBtns = document.querySelectorAll('.prev-step');
-    const formSections = document.querySelectorAll('.form-section');
-    const steps = document.querySelectorAll('.step');
-    
-    nextStepBtns.forEach(btn => {
-      btn.addEventListener('click', function() {
-        const nextStep = this.getAttribute('data-next');
-        navigateToStep(nextStep);
-      });
-    });
-    
-    prevStepBtns.forEach(btn => {
-      btn.addEventListener('click', function() {
-        const prevStep = this.getAttribute('data-prev');
-        navigateToStep(prevStep);
-      });
-    });
-    
-    function navigateToStep(stepId) {
-      // Hide all form sections
-      formSections.forEach(section => {
-        section.classList.remove('active');
-      });
-      
-      // Show the selected section
-      document.getElementById(stepId).classList.add('active');
-      
-      // Update step indicators
-      const stepNumber = parseInt(stepId.replace('step', ''));
-      steps.forEach((step, index) => {
-        if (index + 1 < stepNumber) {
-          step.classList.remove('active');
-          step.classList.add('completed');
-        } else if (index + 1 === stepNumber) {
-          step.classList.add('active');
-          step.classList.remove('completed');
-        } else {
-          step.classList.remove('active');
-          step.classList.remove('completed');
+        if (nextId === "step4") {
+          // Review population
+          document.getElementById('review-services').textContent = document.querySelector('input[name="service"]:checked')?.value || 'N/A';
+          document.getElementById('review-personal').textContent =
+            `Name: ${document.getElementById('fullname').value}, Email: ${document.getElementById('email').value}, Contact: ${document.getElementById('contact').value}, Address: ${document.getElementById('address').value}`;
+          document.getElementById('review-purpose').textContent = document.getElementById('purpose').value;
         }
       });
-      
-      // Update review section if we're on step 3
-      if (stepId === 'step3') {
-        updateReviewSection();
-      }
-    }
-    
-    function updateReviewSection() {
-      // Update selected services
-      const selectedServices = [];
-      document.querySelectorAll('.service-card.selected').forEach(card => {
-        selectedServices.push(card.querySelector('h3').textContent);
+    });
+
+    document.querySelectorAll('.prev-step').forEach(btn => {
+      btn.addEventListener('click', () => {
+        const prevId = btn.dataset.prev;
+        document.querySelectorAll('.step-content').forEach(s => s.classList.remove('active'));
+        document.getElementById(prevId).classList.add('active');
+
+        const index = Array.from(document.querySelectorAll('.step-content')).findIndex(s => s.id === prevId);
+        document.querySelectorAll('.step').forEach((step, i) => {
+          step.classList.toggle('active', i <= index);
+        });
       });
-      
-      const servicesReview = document.getElementById('review-services');
-      if (selectedServices.length > 0) {
-        servicesReview.innerHTML = selectedServices.join('<br>');
-      } else {
-        servicesReview.textContent = 'No services selected';
-      }
-      
-      // Update personal information
-      const fullName = document.getElementById('fullname').value;
-      const email = document.getElementById('email').value;
-      const phone = document.getElementById('phone').value;
-      const address = document.getElementById('address').value;
-      
-      const personalReview = document.getElementById('review-personal');
-      if (fullName) {
-        personalReview.innerHTML = `
-          <strong>Name:</strong> ${fullName}<br>
-          <strong>Email:</strong> ${email}<br>
-          <strong>Phone:</strong> ${phone}<br>
-          <strong>Address:</strong> ${address}
-        `;
-      } else {
-        personalReview.textContent = 'No information provided';
-      }
-      
-      // Update purpose
-      const purposeSelect = document.getElementById('purpose');
-      const purposeReview = document.getElementById('review-purpose');
-      if (purposeSelect.value) {
-        purposeReview.textContent = purposeSelect.options[purposeSelect.selectedIndex].text;
-      } else {
-        purposeReview.textContent = 'Not specified';
-      }
-    }
+    });
+
+    // Form submission
+    document.getElementById('registrationForm').addEventListener('submit', function (e) {
+      e.preventDefault();
+      const refNo = `APS-${new Date().getFullYear()}-${Math.floor(100000 + Math.random() * 900000)}`;
+      document.getElementById('ref-number').textContent = refNo;
+
+      this.style.display = 'none';
+      document.querySelector('.steps-indicator').style.display = 'none';
+      document.getElementById('confirmation').style.display = 'block';
+    });
   </script>
-
-  <script>
-  const serviceCards = document.querySelectorAll('.service-card');
-  const selectedServices = new Set();
-
-  serviceCards.forEach(card => {
-    card.addEventListener('click', () => {
-      const service = card.getAttribute('data-service');
-      card.classList.toggle('selected');
-
-      if (card.classList.contains('selected')) {
-        selectedServices.add(service);
-      } else {
-        selectedServices.delete(service);
-      }
-
-      updateReviewSection();
-    });
-  });
-
-  function updateReviewSection() {
-    const reviewServices = document.getElementById('review-services');
-    if (selectedServices.size > 0) {
-      reviewServices.textContent = Array.from(selectedServices).join(', ');
-    } else {
-      reviewServices.textContent = 'No services selected';
-    }
-  }
-
-  // Navigation between steps
-  document.querySelectorAll('.next-step').forEach(button => {
-    button.addEventListener('click', () => {
-      const nextId = button.getAttribute('data-next');
-      showStep(nextId);
-    });
-  });
-
-  document.querySelectorAll('.prev-step').forEach(button => {
-    button.addEventListener('click', () => {
-      const prevId = button.getAttribute('data-prev');
-      showStep(prevId);
-    });
-  });
-
-  function showStep(stepId) {
-    document.querySelectorAll('.form-section').forEach(section => {
-      section.classList.remove('active');
-    });
-    document.getElementById(stepId).classList.add('active');
-
-    document.querySelectorAll('.registration-steps .step').forEach(step => {
-      if (step.getAttribute('data-step') === stepId.replace('step', '')) {
-        step.classList.add('active');
-      } else {
-        step.classList.remove('active');
-      }
-    });
-  }
-</script>
-
 </body>
 </html>
