@@ -97,6 +97,7 @@ html {
 }
 
 .portal-title {
+  color: #1B4543;
   font-size: 2.8rem;
   font-weight: 700;
   margin-bottom: 1rem;
@@ -455,8 +456,15 @@ html {
 }
 
 @keyframes modalFadeIn {
-  from {opacity: 0; transform: translateY(-20px);}
-  to {opacity: 1; transform: translateY(0);}
+  from {
+    opacity: 0;
+    transform: translateY(-20px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
 .close-modal {
