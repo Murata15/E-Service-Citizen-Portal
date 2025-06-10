@@ -579,3 +579,86 @@ html {
   border-top: 1px solid #ecf0f1;
   font-style: italic;
 }
+
+/* FAQ Page Styling */
+.faq-page {
+  max-width: 800px;
+  margin: 2rem auto;
+  padding: 1rem;
+}
+
+.faq-category {
+  margin-bottom: 2rem;
+}
+
+.faq-category h2 {
+  color: #3498db;
+  border-bottom: 2px solid #ecf0f1;
+  padding-bottom: 0.5rem;
+}
+
+.faq-item {
+  margin: 1rem 0;
+  border: 1px solid #ecf0f1;
+  border-radius: 5px;
+  overflow: hidden;
+}
+
+.faq-question {
+  width: 100%;
+  text-align: left;
+  padding: 1rem;
+  background: #f8f9fa;
+  border: none;
+  font-family: 'Jost', sans-serif;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: background 0.3s;
+}
+
+.faq-question:hover {
+  background: #e9ecef;
+}
+
+.faq-answer {
+  padding: 0 1rem;
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.3s ease-out;
+}
+
+.faq-answer p {
+  padding: 1rem 0;
+}
+
+.faq-contact {
+  margin-top: 2rem;
+  text-align: center;
+}
+
+/* Privacy Policy Styling */
+.privacy-page {
+  max-width: 800px;
+  margin: 2rem auto;
+  padding: 1rem;
+}
+
+.privacy-page section {
+  margin-bottom: 2rem;
+}
+
+.privacy-page h2 {
+  color: #3498db;
+  margin-bottom: 1rem;
+}
+
+.last-updated {
+  color: #7f8c8d;
+  font-style: italic;
+}
+
+.contact-section {
+  background: #f8f9fa;
+  padding: 1.5rem;
+  border-radius: 5px;
+}
