@@ -1,0 +1,873 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>About Us - ServeEase</title>
+  <link href="https://fonts.googleapis.com/css2?family=Jost:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <style>
+    :root {
+      --teal: #008080;
+      --gold: #FFD700;
+      --mint: #98FF98;
+      --light-teal: #e6f7f7;
+      --dark-teal: #006666;
+      --light-gold: #fff9e6;
+      --dark-gold: #e6c200;
+      --light-mint: #f0fff0;
+      --dark-mint: #7fcc7f;
+      --white: #ffffff;
+      --light-gray: #f8f9fa;
+      --dark-gray: #333;
+      --shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+      --transition: all 0.4s ease;
+    }
+    
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Jost', sans-serif;
+    }
+    
+    body {
+      background-color: var(--light-mint);
+      color: var(--dark-gray);
+      line-height: 1.6;
+    }
+    
+    /* Header Styles */
+    header {
+      background: linear-gradient(135deg, var(--teal) 0%, var(--dark-teal) 100%);
+      color: var(--white);
+      padding: 1.5rem 0;
+      box-shadow: var(--shadow);
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+    
+    .header-container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 2rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    
+    .logo-container {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+    }
+    
+    .logo {
+      width: 60px;
+      height: 60px;
+      border-radius: 50%;
+      background-color: var(--gold);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 700;
+      font-size: 1.8rem;
+      color: var(--dark-teal);
+    }
+    
+    .brand {
+      font-size: 1.8rem;
+      font-weight: 700;
+    }
+    
+    nav ul {
+      display: flex;
+      list-style: none;
+      gap: 2rem;
+    }
+    
+    nav a {
+      color: var(--white);
+      text-decoration: none;
+      font-weight: 500;
+      font-size: 1.1rem;
+      transition: var(--transition);
+      padding: 0.5rem 1rem;
+      border-radius: 4px;
+    }
+    
+    nav a:hover {
+      background-color: rgba(255, 255, 255, 0.2);
+    }
+    
+    .nav-btn {
+      background-color: var(--gold);
+      color: var(--dark-teal);
+      padding: 0.8rem 1.5rem;
+      border-radius: 30px;
+      font-weight: 600;
+      transition: var(--transition);
+    }
+    
+    .nav-btn:hover {
+      background-color: var(--dark-gold);
+      transform: translateY(-3px);
+    }
+    
+    /* Hero Section */
+    .hero {
+      background: linear-gradient(rgba(0, 80, 80, 0.8), rgba(0, 80, 80, 0.9)), url('https://images.unsplash.com/photo-1553877522-43269d4ea984?ixlib=rb-4.0.3&auto=format&fit=crop&w=1950&q=80');
+      background-size: cover;
+      background-position: center;
+      color: var(--white);
+      padding: 8rem 2rem;
+      text-align: center;
+      position: relative;
+    }
+    
+    .hero-content {
+      max-width: 800px;
+      margin: 0 auto;
+    }
+    
+    .hero h1 {
+      font-size: 3.5rem;
+      margin-bottom: 1.5rem;
+      text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+    }
+    
+    .hero p {
+      font-size: 1.4rem;
+      margin-bottom: 2rem;
+      max-width: 700px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+    
+    /* Section Styling */
+    .section {
+      padding: 6rem 2rem;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+    
+    .section-header {
+      text-align: center;
+      margin-bottom: 4rem;
+    }
+    
+    .section-header h2 {
+      font-size: 2.5rem;
+      color: var(--dark-teal);
+      margin-bottom: 1rem;
+      position: relative;
+      display: inline-block;
+    }
+    
+    .section-header h2:after {
+      content: '';
+      position: absolute;
+      bottom: -15px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 80px;
+      height: 4px;
+      background: var(--gold);
+    }
+    
+    .section-header p {
+      font-size: 1.2rem;
+      max-width: 700px;
+      margin: 2rem auto 0;
+      color: var(--dark-gray);
+    }
+    
+    /* Mission & Vision */
+    .mission-vision {
+      background-color: var(--white);
+    }
+    
+    .mv-container {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 3rem;
+      margin-top: 3rem;
+    }
+    
+    .mv-card {
+      background: var(--light-mint);
+      border-radius: 15px;
+      padding: 2.5rem;
+      box-shadow: var(--shadow);
+      transition: var(--transition);
+      text-align: center;
+    }
+    
+    .mv-card:hover {
+      transform: translateY(-10px);
+      box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15);
+    }
+    
+    .mv-card i {
+      font-size: 3.5rem;
+      color: var(--teal);
+      margin-bottom: 1.5rem;
+    }
+    
+    .mv-card h3 {
+      font-size: 1.8rem;
+      margin-bottom: 1.5rem;
+      color: var(--dark-teal);
+    }
+    
+    /* Values */
+    .values {
+      background-color: var(--light-teal);
+    }
+    
+    .values-container {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 2.5rem;
+      margin-top: 3rem;
+    }
+    
+    .value-card {
+      background: var(--white);
+      border-radius: 15px;
+      padding: 2rem;
+      box-shadow: var(--shadow);
+      transition: var(--transition);
+      text-align: center;
+    }
+    
+    .value-card:hover {
+      background: var(--teal);
+      color: var(--white);
+    }
+    
+    .value-card:hover h3,
+    .value-card:hover .value-number {
+      color: var(--white);
+    }
+    
+    .value-number {
+      font-size: 3rem;
+      font-weight: 700;
+      color: var(--teal);
+      margin-bottom: 1rem;
+    }
+    
+    .value-card h3 {
+      font-size: 1.5rem;
+      margin-bottom: 1rem;
+      color: var(--dark-teal);
+    }
+    
+    /* Team Section */
+    .team {
+      background-color: var(--white);
+    }
+    
+    .team-container {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 2.5rem;
+      margin-top: 3rem;
+    }
+    
+    .team-member {
+      background: var(--light-mint);
+      border-radius: 15px;
+      overflow: hidden;
+      box-shadow: var(--shadow);
+      transition: var(--transition);
+      text-align: center;
+    }
+    
+    .team-member:hover {
+      transform: translateY(-10px);
+      box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15);
+    }
+    
+    .member-img {
+      height: 280px;
+      background-size: cover;
+      background-position: top;
+    }
+    
+    .member-info {
+      padding: 2rem;
+    }
+    
+    .member-info h3 {
+      font-size: 1.5rem;
+      margin-bottom: 0.5rem;
+      color: var(--dark-teal);
+    }
+    
+    .member-info .position {
+      color: var(--teal);
+      font-weight: 600;
+      margin-bottom: 1rem;
+      display: block;
+    }
+    
+    .social-links {
+      display: flex;
+      justify-content: center;
+      gap: 1rem;
+      margin-top: 1.5rem;
+    }
+    
+    .social-links a {
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      background: var(--teal);
+      color: var(--white);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: var(--transition);
+    }
+    
+    .social-links a:hover {
+      background: var(--gold);
+      color: var(--dark-teal);
+      transform: translateY(-5px);
+    }
+    
+    /* Stats Section */
+    .stats {
+      background: linear-gradient(135deg, var(--teal) 0%, var(--dark-teal) 100%);
+      color: var(--white);
+      text-align: center;
+      padding: 5rem 2rem;
+    }
+    
+    .stats-container {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 3rem;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+    
+    .stat-item {
+      padding: 1.5rem;
+    }
+    
+    .stat-number {
+      font-size: 3.5rem;
+      font-weight: 700;
+      margin-bottom: 1rem;
+      color: var(--gold);
+    }
+    
+    .stat-text {
+      font-size: 1.2rem;
+      font-weight: 500;
+    }
+    
+    /* Contact Section */
+    .contact {
+      background-color: var(--light-teal);
+      padding: 6rem 2rem;
+    }
+    
+    .contact-container {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 3rem;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+    
+    .contact-info {
+      background: var(--white);
+      border-radius: 15px;
+      padding: 2.5rem;
+      box-shadow: var(--shadow);
+    }
+    
+    .contact-info h3 {
+      font-size: 1.8rem;
+      margin-bottom: 1.5rem;
+      color: var(--dark-teal);
+      position: relative;
+      padding-bottom: 1rem;
+    }
+    
+    .contact-info h3:after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 60px;
+      height: 4px;
+      background: var(--gold);
+    }
+    
+    .contact-detail {
+      display: flex;
+      gap: 1.5rem;
+      margin-bottom: 1.8rem;
+    }
+    
+    .contact-detail i {
+      font-size: 1.5rem;
+      color: var(--teal);
+      min-width: 30px;
+    }
+    
+    .contact-form {
+      background: var(--white);
+      border-radius: 15px;
+      padding: 2.5rem;
+      box-shadow: var(--shadow);
+    }
+    
+    .form-group {
+      margin-bottom: 1.5rem;
+    }
+    
+    .form-group label {
+      display: block;
+      margin-bottom: 0.5rem;
+      font-weight: 500;
+      color: var(--dark-teal);
+    }
+    
+    .form-group input,
+    .form-group textarea {
+      width: 100%;
+      padding: 1rem;
+      border: 1px solid #ddd;
+      border-radius: 8px;
+      font-size: 1rem;
+    }
+    
+    .form-group textarea {
+      height: 150px;
+      resize: vertical;
+    }
+    
+    .submit-btn {
+      background: var(--teal);
+      color: var(--white);
+      border: none;
+      padding: 1rem 2.5rem;
+      border-radius: 30px;
+      font-size: 1.1rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: var(--transition);
+      display: inline-block;
+    }
+    
+    .submit-btn:hover {
+      background: var(--dark-teal);
+      transform: translateY(-3px);
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+    }
+    
+    /* Footer */
+    footer {
+      background: linear-gradient(135deg, var(--dark-teal) 0%, var(--teal) 100%);
+      color: var(--white);
+      padding: 5rem 0 2rem;
+    }
+    
+    .footer-container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 2rem;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 3rem;
+    }
+    
+    .footer-col h3 {
+      font-size: 1.5rem;
+      margin-bottom: 1.5rem;
+      position: relative;
+      padding-bottom: 1rem;
+    }
+    
+    .footer-col h3:after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 50px;
+      height: 3px;
+      background: var(--gold);
+    }
+    
+    .footer-col p {
+      margin-bottom: 1.5rem;
+      opacity: 0.9;
+    }
+    
+    .footer-links {
+      list-style: none;
+    }
+    
+    .footer-links li {
+      margin-bottom: 1rem;
+    }
+    
+    .footer-links a {
+      color: var(--light-mint);
+      text-decoration: none;
+      transition: var(--transition);
+      display: flex;
+      align-items: center;
+      gap: 0.8rem;
+    }
+    
+    .footer-links a:hover {
+      color: var(--gold);
+      padding-left: 5px;
+    }
+    
+    .social-col .social-links {
+      justify-content: flex-start;
+      margin-top: 1.5rem;
+    }
+    
+    .copyright {
+      text-align: center;
+      padding-top: 3rem;
+      margin-top: 3rem;
+      border-top: 1px solid rgba(255, 255, 255, 0.1);
+      opacity: 0.8;
+    }
+    
+    /* Responsive Design */
+    @media (max-width: 768px) {
+      .header-container {
+        flex-direction: column;
+        gap: 1.5rem;
+      }
+      
+      nav ul {
+        flex-direction: column;
+        align-items: center;
+        gap: 1rem;
+      }
+      
+      .hero h1 {
+        font-size: 2.5rem;
+      }
+      
+      .hero p {
+        font-size: 1.2rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <!-- Header -->
+  <header>
+    <div class="header-container">
+      <div class="logo-container">
+        <div class="logo">SE</div>
+        <div class="brand">ServeEase</div>
+      </div>
+      
+      <nav>
+        <ul>
+          <li><a href="index.html"><i class="fas fa-home"></i> Home</a></li>
+          <li><a href="services.html"><i class="fas fa-concierge-bell"></i> Services</a></li>
+          <li><a href="about.html" class="active"><i class="fas fa-info-circle"></i> About Us</a></li>
+          <li><a href="contact.html"><i class="fas fa-envelope"></i> Contact</a></li>
+          <li><a href="login.html" class="nav-btn"><i class="fas fa-user"></i> Sign In</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <!-- Hero Section -->
+  <section class="hero">
+    <div class="hero-content">
+      <h1>About ServeEase</h1>
+      <p>Transforming government services for a better citizen experience</p>
+    </div>
+  </section>
+
+  <!-- Our Story Section -->
+  <section class="section">
+    <div class="section-header">
+      <h2>Our Story</h2>
+      <p>Founded in 2015, ServeEase began with a simple mission: to make government services accessible, efficient, and citizen-friendly.</p>
+    </div>
+    
+    <div class="mv-container">
+      <div class="mv-card">
+        <i class="fas fa-bullseye"></i>
+        <h3>Our Mission</h3>
+        <p>To revolutionize public service delivery through innovative technology, creating seamless experiences that save citizens time and resources while promoting transparency and trust in government.</p>
+      </div>
+      
+      <div class="mv-card">
+        <i class="fas fa-eye"></i>
+        <h3>Our Vision</h3>
+        <p>To become the leading digital platform for government services, setting the standard for efficiency, accessibility, and citizen satisfaction across all public sectors.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Our Values Section -->
+  <section class="section values">
+    <div class="section-header">
+      <h2>Our Values</h2>
+      <p>These core principles guide everything we do at ServeEase</p>
+    </div>
+    
+    <div class="values-container">
+      <div class="value-card">
+        <div class="value-number">01</div>
+        <h3>Citizen First</h3>
+        <p>We prioritize citizen needs in every decision we make, designing services that truly serve the people.</p>
+      </div>
+      
+      <div class="value-card">
+        <div class="value-number">02</div>
+        <h3>Innovation</h3>
+        <p>We continuously explore new technologies and approaches to improve service delivery and user experience.</p>
+      </div>
+      
+      <div class="value-card">
+        <div class="value-number">03</div>
+        <h3>Transparency</h3>
+        <p>We believe open processes build trust, providing clear information at every step of service delivery.</p>
+      </div>
+      
+      <div class="value-card">
+        <div class="value-number">04</div>
+        <h3>Excellence</h3>
+        <p>We strive for the highest standards in service quality, reliability, and user satisfaction.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Team Section -->
+  <section class="section team">
+    <div class="section-header">
+      <h2>Meet Our Team</h2>
+      <p>The dedicated professionals driving ServeEase forward</p>
+    </div>
+    
+    <div class="team-container">
+      <div class="team-member">
+        <div class="member-img" style="background: linear-gradient(rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.2)), url('https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80');"></div>
+        <div class="member-info">
+          <h3>Camille Villar</h3>
+          <span class="position">Founder & CEO</span>
+          <p>20+ years in public service innovation and digital transformation.</p>
+          <div class="social-links">
+            <a href="#"><i class="fab fa-linkedin-in"></i></a>
+            <a href="#"><i class="fab fa-twitter"></i></a>
+            <a href="#"><i class="fas fa-envelope"></i></a>
+          </div>
+        </div>
+      </div>
+      
+      <div class="team-member">
+        <div class="member-img" style="background: linear-gradient(rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.2)), url('https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80');"></div>
+        <div class="member-info">
+          <h3>Willie Revillame</h3>
+          <span class="position">Chief Technology Officer</span>
+          <p>Tech visionary with expertise in secure government systems.</p>
+          <div class="social-links">
+            <a href="#"><i class="fab fa-linkedin-in"></i></a>
+            <a href="#"><i class="fab fa-github"></i></a>
+            <a href="#"><i class="fas fa-envelope"></i></a>
+          </div>
+        </div>
+      </div>
+      
+      <div class="team-member">
+        <div class="member-img" style="background: linear-gradient(rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.2)), url('https://images.unsplash.com/photo-1560250097-0b93528c311a?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80');"></div>
+        <div class="member-info">
+          <h3>Jennifer Niven</h3>
+          <span class="position">Director of Public Relations</span>
+          <p>Bridging the gap between government agencies and citizens.</p>
+          <div class="social-links">
+            <a href="#"><i class="fab fa-linkedin-in"></i></a>
+            <a href="#"><i class="fab fa-facebook-f"></i></a>
+            <a href="#"><i class="fas fa-envelope"></i></a>
+          </div>
+        </div>
+      </div>
+      
+      <div class="team-member">
+        <div class="member-img" style="background: linear-gradient(rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.2)), url('https://images.unsplash.com/photo-1494790108377-be9c29b29330?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80');"></div>
+        <div class="member-info">
+          <h3>Fyangie </h3>
+          <span class="position">User Experience Lead</span>
+          <p>Creating intuitive interfaces that make government services accessible to all.</p>
+          <div class="social-links">
+            <a href="#"><i class="fab fa-linkedin-in"></i></a>
+            <a href="#"><i class="fab fa-dribbble"></i></a>
+            <a href="#"><i class="fas fa-envelope"></i></a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Stats Section -->
+  <section class="stats">
+    <div class="stats-container">
+      <div class="stat-item">
+        <div class="stat-number">250K+</div>
+        <div class="stat-text">Citizens Served</div>
+      </div>
+      
+      <div class="stat-item">
+        <div class="stat-number">98%</div>
+        <div class="stat-text">Satisfaction Rate</div>
+      </div>
+      
+      <div class="stat-item">
+        <div class="stat-number">75%</div>
+        <div class="stat-text">Time Saved</div>
+      </div>
+      
+      <div class="stat-item">
+        <div class="stat-number">35+</div>
+        <div class="stat-text">Government Partners</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Contact Section -->
+  <section class="contact">
+    <div class="section-header">
+      <h2>Get In Touch</h2>
+      <p>Have questions or feedback? We'd love to hear from you</p>
+    </div>
+    
+    <div class="contact-container">
+      <div class="contact-info">
+        <h3>Contact Information</h3>
+        
+        <div class="contact-detail">
+          <i class="fas fa-map-marker-alt"></i>
+          <div>
+            <h4>Our Headquarters</h4>
+            <p>123 GovTech Plaza, Quezon City, Metro Manila</p>
+          </div>
+        </div>
+        
+        <div class="contact-detail">
+          <i class="fas fa-phone"></i>
+          <div>
+            <h4>Phone Number</h4>
+            <p>+63 2 1234 5678</p>
+          </div>
+        </div>
+        
+        <div class="contact-detail">
+          <i class="fas fa-envelope"></i>
+          <div>
+            <h4>Email Address</h4>
+            <p>info@serveease.ph</p>
+          </div>
+        </div>
+        
+        <div class="contact-detail">
+          <i class="fas fa-clock"></i>
+          <div>
+            <h4>Working Hours</h4>
+            <p>Monday - Friday: 8:00 AM - 6:00 PM</p>
+          </div>
+        </div>
+      </div>
+      
+      <div class="contact-form">
+        <h3>Send Us a Message</h3>
+        <form>
+          <div class="form-group">
+            <label for="name">Full Name</label>
+            <input type="text" id="name" placeholder="Enter your name">
+          </div>
+          
+          <div class="form-group">
+            <label for="email">Email Address</label>
+            <input type="email" id="email" placeholder="Enter your email">
+          </div>
+          
+          <div class="form-group">
+            <label for="subject">Subject</label>
+            <input type="text" id="subject" placeholder="What is this regarding?">
+          </div>
+          
+          <div class="form-group">
+            <label for="message">Message</label>
+            <textarea id="message" placeholder="Type your message here"></textarea>
+          </div>
+          
+          <button type="submit" class="submit-btn">Send Message</button>
+        </form>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer>
+    <div class="footer-container">
+      <div class="footer-col">
+        <h3>ServeEase</h3>
+        <p>Your trusted partner in accessible government services. We're committed to making public services efficient, transparent, and citizen-friendly.</p>
+        <div class="social-links">
+          <a href="#"><i class="fab fa-facebook-f"></i></a>
+          <a href="#"><i class="fab fa-twitter"></i></a>
+          <a href="#"><i class="fab fa-linkedin-in"></i></a>
+          <a href="#"><i class="fab fa-instagram"></i></a>
+        </div>
+      </div>
+      
+      <div class="footer-col">
+        <h3>Quick Links</h3>
+        <ul class="footer-links">
+          <li><a href="index.html"><i class="fas fa-chevron-right"></i> Home</a></li>
+          <li><a href="services.html"><i class="fas fa-chevron-right"></i> Services</a></li>
+          <li><a href="aboutus.html"><i class="fas fa-chevron-right"></i> About Us</a></li>
+          <li><a href="faqpage.html"><i class="fas fa-chevron-right"></i> FAQs</a></li>
+        </ul>
+      </div>
+      
+      <div class="footer-col">
+        <h3>Services</h3>
+        <ul class="footer-links">
+          <li><a href="../services/buildingpermit.html"><i class="fas fa-chevron-right"></i> Building Permits</a></li>
+          <li><a href="../services/businessregistration.html"><i class="fas fa-chevron-right"></i> Business Registration</a></li>
+          <li><a href="../services/healthservices.html"><i class="fas fa-chevron-right"></i> Health Services</a></li>
+          <li><a href="../services/vehicleregistration.html"><i class="fas fa-chevron-right"></i> Vehicle Registration</a></li>
+          <li><a href="../services/parkrental.html"><i class="fas fa-chevron-right"></i> Park Rental</a></li>
+        </ul>
+      </div>
+      
+      <div class="footer-col social-col">
+        <h3>Newsletter</h3>
+        <p>Subscribe to our newsletter for updates on new services and features.</p>
+        <form>
+          <div class="form-group">
+            <input type="email" placeholder="Enter your email">
+          </div>
+          <button type="submit" class="submit-btn">Subscribe</button>
+        </form>
+      </div>
+    </div>
+    
+    <div class="copyright">
+      <p>&copy; 2023 ServeEase. All rights reserved. | Designed with <i class="fas fa-heart" style="color: var(--gold);"></i> for better governance</p>
+    </div>
+  </footer>
+</body>
+</html>

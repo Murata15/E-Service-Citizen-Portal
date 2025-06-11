@@ -1,55 +1,825 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Admin Dashboard - ServeEase</title>
-  <link rel="stylesheet" href="admin-style.css" />
-  <link href="https://fonts.googleapis.com/css2?family=Jost&display=swap" rel="stylesheet">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ServeEase - Government Service Portal</title>
+  <link href="https://fonts.googleapis.com/css2?family=Jost:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <style>
+    :root {
+      --teal: #008080;
+      --gold: #FFD700;
+      --mint: #98FF98;
+      --light-teal: #e6f7f7;
+      --dark-teal: #006666;
+      --light-gold: #fff9e6;
+      --dark-gold: #e6c200;
+      --light-mint: #f0fff0;
+      --dark-mint: #7fcc7f;
+      --gray: #f5f5f5;
+      --dark-gray: #444;
+      --white: #ffffff;
+      --shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    }
+    
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Jost', sans-serif;
+    }
+    
+    body {
+      background: linear-gradient(135deg, var(--light-mint) 0%, var(--light-teal) 100%);
+      color: var(--dark-gray);
+      min-height: 100vh;
+      position: relative;
+    }
+    
+    /* Login Overlay */
+    .login-overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.7);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      z-index: 1000;
+    }
+    
+    .login-container {
+      background: white;
+      border-radius: 15px;
+      width: 90%;
+      max-width: 450px;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+      overflow: hidden;
+      animation: popIn 0.5s ease;
+    }
+    
+    @keyframes popIn {
+      0% { transform: scale(0.8); opacity: 0; }
+      100% { transform: scale(1); opacity: 1; }
+    }
+    
+    .login-header {
+      background: linear-gradient(135deg, var(--teal) 0%, var(--dark-teal) 100%);
+      color: white;
+      text-align: center;
+      padding: 30px 20px;
+    }
+    
+    .login-header h2 {
+      font-size: 28px;
+      margin-bottom: 10px;
+    }
+    
+    .login-header p {
+      opacity: 0.9;
+    }
+    
+    .login-body {
+      padding: 30px;
+    }
+    
+    .form-group {
+      margin-bottom: 20px;
+    }
+    
+    .form-group label {
+      display: block;
+      margin-bottom: 8px;
+      font-weight: 500;
+      color: var(--dark-teal);
+    }
+    
+    .form-group input {
+      width: 100%;
+      padding: 14px;
+      border: 1px solid #ddd;
+      border-radius: 8px;
+      font-size: 16px;
+      transition: all 0.3s ease;
+    }
+    
+    .form-group input:focus {
+      outline: none;
+      border-color: var(--teal);
+      box-shadow: 0 0 0 3px rgba(0, 128, 128, 0.2);
+    }
+    
+    .login-btn {
+      width: 100%;
+      padding: 14px;
+      background: linear-gradient(135deg, var(--gold) 0%, var(--dark-gold) 100%);
+      color: var(--dark-teal);
+      border: none;
+      border-radius: 8px;
+      font-size: 18px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      margin-top: 10px;
+    }
+    
+    .login-btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 5px 15px rgba(255, 215, 0, 0.4);
+    }
+    
+    .role-selector {
+      display: flex;
+      gap: 10px;
+      margin-bottom: 20px;
+    }
+    
+    .role-btn {
+      flex: 1;
+      padding: 12px;
+      text-align: center;
+      background: var(--light-mint);
+      border: 2px solid transparent;
+      border-radius: 8px;
+      font-weight: 500;
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
+    
+    .role-btn.active {
+      background: var(--mint);
+      border-color: var(--teal);
+      color: var(--dark-teal);
+      font-weight: 600;
+    }
+    
+    /* Dashboard Styles */
+    .dashboard-container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 20px;
+      display: none;
+    }
+    
+    .topbar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 20px;
+      background: linear-gradient(135deg, var(--teal) 0%, var(--dark-teal) 100%);
+      color: var(--white);
+      box-shadow: var(--shadow);
+      border-radius: 0 0 15px 15px;
+      margin-bottom: 30px;
+    }
+    
+    .logo-container {
+      display: flex;
+      align-items: center;
+      gap: 15px;
+    }
+    
+    .logo {
+      width: 60px;
+      height: 60px;
+      border-radius: 50%;
+      background: var(--gold);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 700;
+      font-size: 28px;
+      color: var(--dark-teal);
+    }
+    
+    .brand {
+      font-size: 28px;
+      font-weight: 700;
+      letter-spacing: 0.5px;
+    }
+    
+    .nav-links {
+      display: flex;
+      gap: 25px;
+    }
+    
+    .nav-links a {
+      color: var(--white);
+      text-decoration: none;
+      font-weight: 500;
+      padding: 8px 15px;
+      border-radius: 6px;
+      transition: all 0.3s ease;
+    }
+    
+    .nav-links a:hover {
+      background: rgba(255, 255, 255, 0.2);
+    }
+    
+    .user-info {
+      display: flex;
+      align-items: center;
+      gap: 15px;
+    }
+    
+    .user-avatar {
+      width: 45px;
+      height: 45px;
+      border-radius: 50%;
+      background: var(--gold);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 600;
+      color: var(--dark-teal);
+    }
+    
+    .logout-btn {
+      background: transparent;
+      color: white;
+      border: none;
+      font-size: 16px;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      padding: 8px 15px;
+      border-radius: 6px;
+      transition: all 0.3s ease;
+    }
+    
+    .logout-btn:hover {
+      background: rgba(255, 255, 255, 0.2);
+    }
+    
+    .dashboard-header {
+      text-align: center;
+      margin-bottom: 40px;
+    }
+    
+    .dashboard-header h1 {
+      color: var(--dark-teal);
+      font-size: 36px;
+      margin-bottom: 15px;
+    }
+    
+    .dashboard-header p {
+      color: var(--dark-gray);
+      font-size: 18px;
+      max-width: 700px;
+      margin: 0 auto;
+    }
+    
+    .admin-dashboard {
+      background: white;
+      border-radius: 15px;
+      box-shadow: var(--shadow);
+      overflow: hidden;
+      margin-bottom: 40px;
+    }
+    
+    .dashboard-cards {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 25px;
+      padding: 30px;
+    }
+    
+    .dashboard-card {
+      background: var(--light-mint);
+      border-radius: 12px;
+      padding: 25px;
+      text-align: center;
+      transition: all 0.3s ease;
+      border: 2px solid transparent;
+    }
+    
+    .dashboard-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+      border-color: var(--teal);
+    }
+    
+    .dashboard-card i {
+      font-size: 48px;
+      color: var(--teal);
+      margin-bottom: 20px;
+    }
+    
+    .dashboard-card h3 {
+      color: var(--dark-teal);
+      margin-bottom: 15px;
+      font-size: 22px;
+    }
+    
+    .dashboard-card .number {
+      font-size: 36px;
+      font-weight: 700;
+      color: var(--gold);
+    }
+    
+    .admin-table-container {
+      padding: 0 30px 30px;
+    }
+    
+    .admin-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 20px 0;
+    }
+    
+    .admin-table th,
+    .admin-table td {
+      padding: 18px 15px;
+      text-align: left;
+      border-bottom: 1px solid #eee;
+    }
+    
+    .admin-table th {
+      background: var(--teal);
+      color: var(--white);
+      font-weight: 600;
+      font-size: 18px;
+    }
+    
+    .admin-table tr:nth-child(even) {
+      background: var(--light-mint);
+    }
+    
+    .admin-table tr:hover {
+      background: rgba(152, 255, 152, 0.3);
+    }
+    
+    .status {
+      padding: 8px 15px;
+      border-radius: 20px;
+      font-size: 14px;
+      font-weight: 500;
+      display: inline-block;
+    }
+    
+    .status.pending {
+      background: rgba(255, 215, 0, 0.2);
+      color: var(--dark-gold);
+    }
+    
+    .status.approved {
+      background: rgba(0, 128, 128, 0.2);
+      color: var(--dark-teal);
+    }
+    
+    .status.rejected {
+      background: rgba(255, 0, 0, 0.1);
+      color: #d32f2f;
+    }
+    
+    .action-buttons {
+      display: flex;
+      gap: 10px;
+    }
+    
+    .action-btn {
+      padding: 10px 15px;
+      border: none;
+      border-radius: 6px;
+      font-size: 14px;
+      font-weight: 500;
+      cursor: pointer;
+      transition: all 0.2s ease;
+      display: flex;
+      align-items: center;
+      gap: 5px;
+    }
+    
+    .btn-approve {
+      background: var(--teal);
+      color: white;
+    }
+    
+    .btn-reject {
+      background: #ff6b6b;
+      color: white;
+    }
+    
+    .btn-view {
+      background: var(--gold);
+      color: var(--dark-teal);
+    }
+    
+    .action-btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    }
+    
+    .footer {
+      background: linear-gradient(135deg, var(--dark-teal) 0%, var(--teal) 100%);
+      color: var(--white);
+      padding: 40px 0 20px;
+      margin-top: 50px;
+      border-radius: 15px 15px 0 0;
+    }
+    
+    .footer-content {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 20px;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 30px;
+    }
+    
+    .footer-section {
+      margin-bottom: 20px;
+    }
+    
+    .footer-section h3 {
+      font-size: 22px;
+      margin-bottom: 20px;
+      position: relative;
+      padding-bottom: 10px;
+    }
+    
+    .footer-section h3::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 60px;
+      height: 3px;
+      background: var(--gold);
+    }
+    
+    .footer-section ul {
+      list-style: none;
+    }
+    
+    .footer-section ul li {
+      margin-bottom: 15px;
+    }
+    
+    .footer-section ul li a {
+      color: var(--light-mint);
+      text-decoration: none;
+      transition: all 0.3s ease;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    
+    .footer-section ul li a:hover {
+      color: var(--gold);
+      padding-left: 5px;
+    }
+    
+    .copyright {
+      text-align: center;
+      padding-top: 30px;
+      border-top: 1px solid rgba(255, 255, 255, 0.1);
+      margin-top: 30px;
+      font-size: 16px;
+      color: rgba(255, 255, 255, 0.7);
+    }
+    
+    /* Admin indicator */
+    .admin-indicator {
+      background: var(--gold);
+      color: var(--dark-teal);
+      padding: 5px 15px;
+      border-radius: 20px;
+      font-weight: 600;
+      font-size: 14px;
+      margin-left: 10px;
+    }
+    
+    /* Responsive Design */
+    @media (max-width: 768px) {
+      .topbar {
+        flex-direction: column;
+        gap: 20px;
+        padding: 15px;
+      }
+      
+      .nav-links {
+        flex-wrap: wrap;
+        justify-content: center;
+      }
+      
+      .dashboard-cards {
+        grid-template-columns: 1fr;
+      }
+      
+      .admin-table {
+        display: block;
+        overflow-x: auto;
+      }
+      
+      .action-buttons {
+        flex-wrap: wrap;
+      }
+    }
+  </style>
 </head>
 <body>
-  <div class="dashboard-header">
-    <h1>ServeEase Admin Panel</h1>
-    <button onclick="logout()">Logout</button>
-  </div>
-
-  <div class="content">
-    <h2>Submitted Applications</h2>
-    <div id="applicationsContainer">
-      <!-- Dynamically filled with application cards -->
+  <!-- Login Overlay (shown by default) -->
+  <div class="login-overlay" id="loginOverlay">
+    <div class="login-container">
+      <div class="login-header">
+        <div class="" style="margin: 0 auto 15px;">SE</div>
+        <h2>ServeEase Admin Portal</h2>
+        <p>Access restricted to authorized personnel only</p>
+      </div>
+      <div class="login-body">
+        <div class="role-selector">
+          <div class="role-btn active" data-role="admin">Administrator</div>
+        </div>
+        
+        <div class="form-group">
+          <label for="email"><i class="fas fa-envelope"></i> Email Address</label>
+          <input type="email" id="email" placeholder="admin@serveease.ph" autocomplete="off">
+        </div>
+        
+        <div class="form-group">
+          <label for="password"><i class="fas fa-lock"></i> Password</label>
+          <input type="password" id="password" placeholder="Enter your password">
+        </div>
+        
+        <button class="login-btn" id="loginBtn">
+          <i class="fas fa-sign-in-alt"></i> Login to Dashboard
+        </button>
+        
+        <div style="text-align: center; margin-top: 25px; color: #666; font-size: 14px;">
+          <p>Demo credentials for admin:</p>
+          <p>Email: admin@serveease.ph</p>
+          <p>Password: admin123</p>
+        </div>
+      </div>
     </div>
+  </div>
+  
+  <!-- Dashboard (hidden until login) -->
+  <div class="dashboard-container" id="dashboardContainer">
+    <header class="topbar">
+      <div class="logo-container">
+        <img src="img/serveease-logo.png" alt="ServeEase Logo" class="logo"/>
+        <span class="brand">ServeEase <span class="admin-indicator">ADMIN PANEL</span></span>
+      </div>
+      
+      <nav class="nav-links">
+        <a href="admin-dashboard.html"><i class="fas fa-tachometer-alt"></i> Dashboard</a>
+        <a href="#"><i class="fas fa-tasks"></i> Requests</a>
+        <a href="#"><i class="fas fa-users"></i> Users</a>
+        <a href="#"><i class="fas fa-cog"></i> Settings</a>
+      </nav>
+      
+      <div class="user-info">
+        <div class="user-avatar">JD</div>
+        <div>
+          <div>John Doe</div>
+          <div style="font-size: 14px; opacity: 0.8;">Administrator</div>
+        </div>
+        <button class="logout-btn" id="logoutBtn">
+          <i class="fas fa-sign-out-alt"></i> Logout
+        </button>
+      </div>
+    </header>
+    
+    <div class="dashboard-header">
+      <h1>Administrator Dashboard</h1>
+      <p>Manage service requests, user accounts, and system settings</p>
+    </div>
+    
+    <div class="admin-dashboard">
+      <div class="dashboard-cards">
+        <div class="dashboard-card">
+          <i class="fas fa-tasks"></i>
+          <h3>Total Requests</h3>
+          <div class="number">142</div>
+        </div>
+        
+        <div class="dashboard-card">
+          <i class="fas fa-hourglass-half"></i>
+          <h3>Pending Approval</h3>
+          <div class="number">24</div>
+        </div>
+        
+        <div class="dashboard-card">
+          <i class="fas fa-check-circle"></i>
+          <h3>Approved</h3>
+          <div class="number">98</div>
+        </div>
+        
+        <div class="dashboard-card">
+          <i class="fas fa-users"></i>
+          <h3>Active Users</h3>
+          <div class="number">1,842</div>
+        </div>
+      </div>
+      
+      <div class="admin-table-container">
+        <h2 style="color: var(--dark-teal); margin-bottom: 20px;">Pending Service Requests</h2>
+        <table class="admin-table">
+          <thead>
+            <tr>
+              <th>Request ID</th>
+              <th>Service Type</th>
+              <th>Submitted By</th>
+              <th>Submission Date</th>
+              <th>Status</th>
+              <th>Actions</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>#SE20240611</td>
+              <td>Building Permit</td>
+              <td>Maria Santos</td>
+              <td>Jun 11, 2024</td>
+              <td><span class="status pending">Pending</span></td>
+              <td class="action-buttons">
+                <button class="action-btn btn-approve"><i class="fas fa-check"></i> Approve</button>
+                <button class="action-btn btn-reject"><i class="fas fa-times"></i> Reject</button>
+                <button class="action-btn btn-view"><i class="fas fa-eye"></i> View</button>
+              </td>
+            </tr>
+            <tr>
+              <td>#SE20240610</td>
+              <td>Business Registration</td>
+              <td>Robert Johnson</td>
+              <td>Jun 10, 2024</td>
+              <td><span class="status pending">Pending</span></td>
+              <td class="action-buttons">
+                <button class="action-btn btn-approve"><i class="fas fa-check"></i> Approve</button>
+                <button class="action-btn btn-reject"><i class="fas fa-times"></i> Reject</button>
+                <button class="action-btn btn-view"><i class="fas fa-eye"></i> View</button>
+              </td>
+            </tr>
+            <tr>
+              <td>#SE20240609</td>
+              <td>Health Services</td>
+              <td>Sarah Williams</td>
+              <td>Jun 9, 2024</td>
+              <td><span class="status pending">Pending</span></td>
+              <td class="action-buttons">
+                <button class="action-btn btn-approve"><i class="fas fa-check"></i> Approve</button>
+                <button class="action-btn btn-reject"><i class="fas fa-times"></i> Reject</button>
+                <button class="action-btn btn-view"><i class="fas fa-eye"></i> View</button>
+              </td>
+            </tr>
+            <tr>
+              <td>#SE20240608</td>
+              <td>Tax Payment</td>
+              <td>Michael Brown</td>
+              <td>Jun 8, 2024</td>
+              <td><span class="status pending">Pending</span></td>
+              <td class="action-buttons">
+                <button class="action-btn btn-approve"><i class="fas fa-check"></i> Approve</button>
+                <button class="action-btn btn-reject"><i class="fas fa-times"></i> Reject</button>
+                <button class="action-btn btn-view"><i class="fas fa-eye"></i> View</button>
+              </td>
+            </tr>
+            <tr>
+              <td>#SE20240607</td>
+              <td>Water Connection</td>
+              <td>Jennifer Lee</td>
+              <td>Jun 7, 2024</td>
+              <td><span class="status pending">Pending</span></td>
+              <td class="action-buttons">
+                <button class="action-btn btn-approve"><i class="fas fa-check"></i> Approve</button>
+                <button class="action-btn btn-reject"><i class="fas fa-times"></i> Reject</button>
+                <button class="action-btn btn-view"><i class="fas fa-eye"></i> View</button>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+    
+    <footer class="footer">
+      <div class="footer-content">
+        <div class="footer-section">
+          <h3>ServeEase</h3>
+          <p>Streamlining government services for a more efficient and citizen-friendly experience.</p>
+        </div>
+        
+        <!-- FEATURES TO FOLLO -->
+        <div class="footer-section">
+          <h3>Admin Resources</h3>
+          <ul>
+            <li><a href="#"><i class="fas fa-book"></i> Documentation</a></li>
+            <li><a href="#"><i class="fas fa-video"></i> Training Videos</a></li>
+            <li><a href="#"><i class="fas fa-headset"></i> Support Portal</a></li>
+            <li><a href="#"><i class="fas fa-file-alt"></i> Compliance Guidelines</a></li>
+          </ul>
+        </div>
+        
+        <div class="footer-section">
+          <h3>Contact</h3>
+          <ul>
+            <li><a href="#"><i class="fas fa-envelope"></i> admin-support@serveease.ph</a></li>
+            <li><a href="#"><i class="fas fa-phone"></i> +63 912 345 6789</a></li>
+            <li><a href="#"><i class="fas fa-map-marker-alt"></i> 123 Gov't Center, Quezon City</a></li>
+            <li><a href="#"><i class="fas fa-clock"></i> Mon-Fri: 8:00 AM - 6:00 PM</a></li>
+          </ul>
+        </div>
+        
+        <div class="footer-section">
+          <h3>System Info</h3>
+          <ul>
+            <li><a href="#"><i class="fas fa-server"></i> Version 3.2.1</a></li>
+            <li><a href="#"><i class="fas fa-shield-alt"></i> Security Status: Active</a></li>
+            <li><a href="#"><i class="fas fa-sync-alt"></i> Last Updated: Jun 11, 2024</a></li>
+            <li><a href="#"><i class="fas fa-database"></i> Uptime: 99.98%</a></li>
+          </ul>
+        </div>
+      </div>
+      
+      <div class="copyright">
+        &copy; 2024 ServeEase Government Service Portal. All rights reserved. | Admin Access Only
+      </div>
+    </footer>
   </div>
 
   <script>
-    if (!localStorage.getItem("adminLoggedIn")) {
-      window.location.href = "admin-login.html";
-    }
-
-    function logout() {
-      localStorage.removeItem("adminLoggedIn");
-      window.location.href = "admin-login.html";
-    }
-
-    const applications = JSON.parse(localStorage.getItem("applications")) || [];
-
-    const container = document.getElementById("applicationsContainer");
-
-    if (applications.length === 0) {
-      container.innerHTML = "<p>No applications submitted yet.</p>";
-    } else {
-      applications.forEach((app, index) => {
-        const card = document.createElement("div");
-        card.className = "application-card";
-        card.innerHTML = `
-          <h3>Application #${index + 1}</h3>
-          <p><strong>Service:</strong> ${app.service}</p>
-          <p><strong>Name:</strong> ${app.name}</p>
-          <p><strong>Email:</strong> ${app.email}</p>
-          <p><strong>Status:</strong> <span class="status">${app.status}</span></p>
-        `;
-        container.appendChild(card);
+    document.addEventListener('DOMContentLoaded', function() {
+      const loginOverlay = document.getElementById('loginOverlay');
+      const dashboardContainer = document.getElementById('dashboardContainer');
+      const loginBtn = document.getElementById('loginBtn');
+      const logoutBtn = document.getElementById('logoutBtn');
+      const roleBtns = document.querySelectorAll('.role-btn');
+      const emailInput = document.getElementById('email');
+      const passwordInput = document.getElementById('password');
+      
+     // hardcoded login
+      emailInput.value = 'admin@serveease.ph';
+      
+      roleBtns.forEach(btn => {
+        btn.addEventListener('click', () => {
+          roleBtns.forEach(b => b.classList.remove('active'));
+          btn.classList.add('active');
+        });
       });
-    }
+      
+      loginBtn.addEventListener('click', function() {
+        const role = document.querySelector('.role-btn.active').dataset.role;
+        const email = emailInput.value.trim();
+        const password = passwordInput.value.trim();
+        
+        // Basic validation
+        if (!email || !password) {
+          alert('Please enter both email and password');
+          return;
+        }
+        
+        // Check for admin credentials
+        if (role === 'admin') {
+          if (email === 'admin@serveease.ph' && password === 'admin123') {
+            // Successful login
+            loginOverlay.style.display = 'none';
+            dashboardContainer.style.display = 'block';
+            
+            // Add a subtle animation to the dashboard
+            dashboardContainer.style.animation = 'fadeIn 0.8s ease';
+            document.body.style.background = 'var(--light-mint)';
+          } else {
+            alert('Invalid admin credentials. Use:\nEmail: admin@serveease.ph\nPassword: admin123');
+          }
+        } else {
+          alert('You must select "Administrator" role to access this dashboard');
+        }
+      });
+      
+      // Logout functionality
+      logoutBtn.addEventListener('click', function() {
+        if (confirm('Are you sure you want to logout?')) {
+          dashboardContainer.style.display = 'none';
+          loginOverlay.style.display = 'flex';
+          
+          // Reset form
+          emailInput.value = 'admin@serveease.ph';
+          passwordInput.value = '';
+          document.querySelector('.role-btn[data-role="admin"]').classList.add('active');
+          document.querySelector('.role-btn[data-role="user"]').classList.remove('active');
+        }
+      });
+      
+      const style = document.createElement('style');
+      style.textContent = `
+        @keyframes fadeIn {
+          from { opacity: 0; transform: translateY(20px); }
+          to { opacity: 1; transform: translateY(0); }
+        }
+      `;
+      document.head.appendChild(style);
+
+      passwordInput.addEventListener('keyup', function(e) {
+        if (e.key === 'Enter') {
+          loginBtn.click();
+        }
+      });
+    });
   </script>
 </body>
 </html>

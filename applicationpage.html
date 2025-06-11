@@ -4,28 +4,648 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>ServeEase — Service Registration</title>
-  <link rel="stylesheet" href="applicationpagestyle.css">
-  <script defer src="register.js"></script>
   <link href="https://fonts.googleapis.com/css2?family=Jost:wght@400;500;600;700&display=swap" rel="stylesheet"/>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" crossorigin="anonymous" />
+  <style>
+    :root {
+      --teal: #008080;
+      --gold: #FFD700;
+      --mint: #98FF98;
+      --light-teal: #e0f7fa;
+      --dark-teal: #006666;
+      --light-gold: #fff9c4;
+      --light-mint: #f1f8e9;
+      --gray: #f5f5f5;
+      --dark-gray: #333;
+      --white: #ffffff;
+      --shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    }
 
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Jost', sans-serif;
+      background-color: var(--light-teal);
+      color: var(--dark-gray);
+      line-height: 1.6;
+    }
+
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 20px;
+    }
+
+    /* Header Styles */
+    .topbar {
+      background: linear-gradient(to right, var(--teal), var(--dark-teal));
+      color: white;
+      padding: 15px 0;
+      box-shadow: var(--shadow);
+    }
+
+    .header-container {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .logo-container {
+      display: flex;
+      align-items: center;
+      gap: 15px;
+    }
+
+    .logo {
+      width: 50px;
+      height: 50px;
+      background: var(--gold);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--teal);
+      font-size: 24px;
+      font-weight: bold;
+    }
+
+    .brand {
+      font-size: 24px;
+      font-weight: 700;
+      letter-spacing: 0.5px;
+    }
+
+    .auth-links {
+      display: flex;
+      gap: 20px;
+    }
+
+    .auth-links a {
+      color: white;
+      text-decoration: none;
+      font-weight: 500;
+      padding: 8px 15px;
+      border-radius: 4px;
+      transition: all 0.3s ease;
+    }
+
+    .auth-links a:hover {
+      background-color: rgba(255, 255, 255, 0.2);
+    }
+
+    .auth-links i {
+      margin-right: 5px;
+    }
+
+    /* Breadcrumb */
+    .breadcrumb {
+      background-color: var(--white);
+      padding: 15px 20px;
+      border-radius: 8px;
+      margin: 20px 0;
+      box-shadow: var(--shadow);
+    }
+
+    .breadcrumb a {
+      color: var(--teal);
+      text-decoration: none;
+      font-weight: 500;
+    }
+
+    .breadcrumb span {
+      margin: 0 8px;
+      color: #aaa;
+    }
+
+    /* Main Content */
+    .service-container {
+      padding: 20px 0 40px;
+    }
+
+    .service-main {
+      background-color: var(--white);
+      border-radius: 12px;
+      padding: 30px;
+      box-shadow: var(--shadow);
+    }
+
+    .service-main h1 {
+      color: var(--teal);
+      margin-bottom: 25px;
+      text-align: center;
+      font-size: 32px;
+    }
+
+    /* Steps Indicator */
+    .steps-indicator {
+      display: flex;
+      justify-content: space-between;
+      max-width: 700px;
+      margin: 0 auto 40px;
+      position: relative;
+    }
+
+    .steps-indicator::before {
+      content: '';
+      position: absolute;
+      top: 22px;
+      left: 0;
+      right: 0;
+      height: 4px;
+      background-color: var(--gray);
+      z-index: 1;
+    }
+
+    .step {
+      width: 48px;
+      height: 48px;
+      border-radius: 50%;
+      background-color: var(--gray);
+      color: #777;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 600;
+      position: relative;
+      z-index: 2;
+      transition: all 0.3s ease;
+    }
+
+    .step.active {
+      background-color: var(--teal);
+      color: white;
+      transform: scale(1.1);
+    }
+
+    .step.completed {
+      background-color: var(--gold);
+      color: var(--dark-gray);
+    }
+
+    /* Form Sections */
+    .form-section {
+      display: none;
+      animation: fadeIn 0.5s ease;
+    }
+
+    .form-section.active {
+      display: block;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    h2 {
+      color: var(--teal);
+      margin-bottom: 25px;
+      text-align: center;
+      font-size: 26px;
+    }
+
+    /* Services Grid */
+    .services-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+      gap: 20px;
+      margin: 30px 0;
+    }
+
+    .service-card {
+      background-color: var(--light-mint);
+      border-radius: 10px;
+      padding: 25px 20px;
+      text-align: center;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      border: 2px solid transparent;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .service-card:hover {
+      transform: translateY(-5px);
+      box-shadow: var(--shadow);
+      border-color: var(--teal);
+    }
+
+    .service-card.selected {
+      background-color: var(--light-gold);
+      border-color: var(--gold);
+      transform: translateY(-5px);
+      box-shadow: var(--shadow);
+    }
+
+    .service-card i {
+      font-size: 48px;
+      margin-bottom: 15px;
+      color: var(--teal);
+    }
+
+    .service-card h3 {
+      color: var(--dark-teal);
+      font-size: 20px;
+    }
+
+    .service-card input {
+      display: none;
+    }
+
+    /* Form Rows */
+    .form-row {
+      margin-bottom: 20px;
+    }
+
+    .form-row label {
+      display: block;
+      margin-bottom: 8px;
+      font-weight: 500;
+      color: var(--dark-teal);
+    }
+
+    .form-row input, 
+    .form-row select, 
+    .form-row textarea {
+      width: 100%;
+      padding: 14px;
+      border: 2px solid #ddd;
+      border-radius: 8px;
+      font-family: 'Jost', sans-serif;
+      font-size: 16px;
+      transition: border-color 0.3s;
+    }
+
+    .form-row input:focus, 
+    .form-row select:focus, 
+    .form-row textarea:focus {
+      border-color: var(--teal);
+      outline: none;
+    }
+
+    .form-row textarea {
+      min-height: 120px;
+      resize: vertical;
+    }
+
+    .form-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+      gap: 20px;
+    }
+
+    /* Payment Section */
+    .payment-methods {
+      display: flex;
+      gap: 15px;
+      margin-bottom: 25px;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+
+    .payment-method {
+      padding: 15px 25px;
+      border: 2px solid #ddd;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: all 0.3s;
+      background: var(--gray);
+      text-align: center;
+    }
+
+    .payment-method.selected {
+      border-color: var(--teal);
+      background-color: var(--light-teal);
+      transform: scale(1.05);
+    }
+
+    .payment-method i {
+      font-size: 32px;
+      margin-bottom: 10px;
+      display: block;
+      color: var(--teal);
+    }
+
+    .card-form {
+      background-color: var(--light-teal);
+      padding: 25px;
+      border-radius: 10px;
+      margin-top: 20px;
+      display: none;
+    }
+
+    .card-form.active {
+      display: block;
+      animation: fadeIn 0.5s ease;
+    }
+
+    .card-images {
+      display: flex;
+      gap: 10px;
+      margin-bottom: 15px;
+    }
+
+    .card-images img {
+      height: 30px;
+    }
+
+    /* Review Box */
+    .review-box {
+      background-color: var(--light-mint);
+      border-radius: 10px;
+      padding: 25px;
+      margin: 30px 0;
+      border-left: 4px solid var(--teal);
+    }
+
+    .review-box p {
+      margin-bottom: 15px;
+      padding-bottom: 15px;
+      border-bottom: 1px dashed #ddd;
+    }
+
+    .review-box p:last-child {
+      margin-bottom: 0;
+      padding-bottom: 0;
+      border-bottom: none;
+    }
+
+    .review-box strong {
+      color: var(--dark-teal);
+      min-width: 140px;
+      display: inline-block;
+    }
+
+    /* Survey Section */
+    .survey-section {
+      display: none;
+      background-color: var(--white);
+      border-radius: 12px;
+      padding: 30px;
+      box-shadow: var(--shadow);
+      text-align: center;
+      animation: fadeIn 0.5s ease;
+    }
+
+    .survey-section.active {
+      display: block;
+    }
+
+    .survey-section h2 {
+      color: var(--teal);
+      margin-bottom: 15px;
+    }
+
+    .survey-section p {
+      margin-bottom: 30px;
+      font-size: 18px;
+      color: #555;
+    }
+
+    .rating {
+      margin: 30px 0;
+    }
+
+    .rating i {
+      font-size: 40px;
+      color: #ddd;
+      cursor: pointer;
+      margin: 0 5px;
+      transition: color 0.3s;
+    }
+
+    .rating i.selected {
+      color: var(--gold);
+    }
+
+    .comments {
+      margin: 30px 0;
+    }
+
+    .comments textarea {
+      width: 100%;
+      min-height: 150px;
+      padding: 15px;
+      border: 2px solid #ddd;
+      border-radius: 8px;
+      font-family: 'Jost', sans-serif;
+      font-size: 16px;
+      resize: vertical;
+    }
+
+    .confirmation {
+      text-align: center;
+      padding: 50px 20px;
+      background-color: var(--white);
+      border-radius: 12px;
+      box-shadow: var(--shadow);
+      display: none;
+      animation: fadeIn 0.5s ease;
+    }
+
+    .confirmation.active {
+      display: block;
+    }
+
+    .confirmation i {
+      font-size: 80px;
+      color: var(--teal);
+      margin-bottom: 20px;
+    }
+
+    .confirmation h2 {
+      color: var(--teal);
+      margin-bottom: 15px;
+    }
+
+    .confirmation p {
+      margin-bottom: 30px;
+      font-size: 18px;
+      color: #555;
+      max-width: 700px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    /* Buttons */
+    .form-actions {
+      display: flex;
+      justify-content: center;
+      gap: 15px;
+      margin-top: 30px;
+    }
+
+    .action-btn {
+      padding: 14px 30px;
+      border: none;
+      border-radius: 8px;
+      font-family: 'Jost', sans-serif;
+      font-weight: 600;
+      font-size: 16px;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .action-btn i {
+      margin-right: 8px;
+    }
+
+    .btn-primary {
+      background: linear-gradient(to right, var(--teal), var(--dark-teal));
+      color: white;
+    }
+
+    .btn-primary:hover {
+      background: linear-gradient(to right, var(--dark-teal), var(--teal));
+      transform: translateY(-2px);
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    }
+
+    .secondary {
+      background-color: var(--gray);
+      color: var(--dark-gray);
+    }
+
+    .secondary:hover {
+      background-color: #e0e0e0;
+    }
+
+    .btn-gold {
+      background: linear-gradient(to right, var(--gold), #ffc107);
+      color: var(--dark-gray);
+    }
+
+    .btn-gold:hover {
+      background: linear-gradient(to right, #ffc107, var(--gold));
+      transform: translateY(-2px);
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    }
+
+    /* Footer */
+    .footer {
+      background: linear-gradient(to right, var(--teal), var(--dark-teal));
+      color: white;
+      padding: 40px 0 20px;
+      margin-top: 50px;
+    }
+
+    .footer-content {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 30px;
+      margin-bottom: 30px;
+    }
+
+    .footer-section h3 {
+      font-size: 22px;
+      margin-bottom: 20px;
+      position: relative;
+      padding-bottom: 10px;
+    }
+
+    .footer-section h3::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 50px;
+      height: 3px;
+      background-color: var(--gold);
+    }
+
+    .footer-section ul {
+      list-style: none;
+    }
+
+    .footer-section ul li {
+      margin-bottom: 12px;
+    }
+
+    .footer-section ul li a {
+      color: #e0e0e0;
+      text-decoration: none;
+      transition: all 0.3s;
+      display: inline-block;
+    }
+
+    .footer-section ul li a:hover {
+      color: var(--gold);
+      transform: translateX(5px);
+    }
+
+    .footer-section p {
+      margin-bottom: 10px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .copyright {
+      text-align: center;
+      padding-top: 20px;
+      border-top: 1px solid rgba(255, 255, 255, 0.1);
+      font-size: 14px;
+      color: #ccc;
+    }
+
+    /* Responsive */
+    @media (max-width: 768px) {
+      .header-container {
+        flex-direction: column;
+        gap: 15px;
+      }
+      
+      .services-grid {
+        grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+      }
+      
+      .form-grid {
+        grid-template-columns: 1fr;
+      }
+      
+      .payment-methods {
+        flex-direction: column;
+      }
+      
+      .steps-indicator .step {
+        width: 36px;
+        height: 36px;
+        font-size: 14px;
+      }
+      
+      .steps-indicator::before {
+        top: 18px;
+      }
+    }
+  </style>
 </head>
 <body>
   <header class="topbar">
-    <div class="logo-container">
-      <img src="img/serveease-logo.png" alt="ServeEase Logo" class="logo"/>
-      <span class="brand">ServeEase</span>
-    </div>
-    <div class="auth-links">
-      <a href="signin.html"><i class="fas fa-sign-in-alt"></i> Sign In</a>
-      <a href="signup.html"><i class="fas fa-user-plus"></i> Sign Up</a>
+    <div class="container header-container">
+      <div class="logo-container">
+        <img src="img/serveease-logo.png" alt="ServeEase Logo" class="logo"/>
+        <span class="brand">ServeEase</span>
+      </div>
+      <div class="auth-links">
+        <a href="#"><i class="fas fa-sign-in-alt"></i> Sign In</a>
+        <a href="#"><i class="fas fa-user-plus"></i> Sign Up</a>
+      </div>
     </div>
   </header>
 
-  <main class="service-container">
+  <main class="container service-container">
     <nav class="breadcrumb" aria-label="Breadcrumb">
-      <a href="index.html">Home</a><span>/</span>
-      <a href="services.html">All Services</a><span>/</span>
+      <a href="#">Home</a><span>/</span>
+      <a href="#">All Services</a><span>/</span>
       <span aria-current="page">Service Registration</span>
     </nav>
 
@@ -35,70 +655,457 @@
         <div class="step active" data-step="1">1</div>
         <div class="step" data-step="2">2</div>
         <div class="step" data-step="3">3</div>
+        <div class="step" data-step="4">4</div>
+        <div class="step" data-step="5">5</div>
       </div>
 
       <form id="registrationForm">
-        <!-- Step 1 -->
+        <!-- Step 1: Service Selection -->
         <div class="form-section active" id="step1">
           <h2>Select Service</h2>
           <div class="services-grid">
-            <label class="service-card">
-              <input type="radio" name="service" value="Building Permit" required>
-              <div class="service-content">
-                <i class="fas fa-home"></i>
-                <h3>Building Permit</h3>
-              </div>
-            </label>
-            <label class="service-card">
-              <input type="radio" name="service" value="Health Services">
-              <div class="service-content">
-                <i class="fas fa-heartbeat"></i>
-                <h3>Health Services</h3>
-              </div>
-            </label>
+            <div class="service-card" data-service="Building Permit">
+              <i class="fas fa-home"></i>
+              <h3>Building Permit</h3>
+            </div>
+            <div class="service-card" data-service="Health Services">
+              <i class="fas fa-heartbeat"></i>
+              <h3>Health Services</h3>
+            </div>
+            <div class="service-card" data-service="ID Card Application">
+              <i class="fas fa-id-card"></i>
+              <h3>ID Card Application</h3>
+            </div>
+            <div class="service-card" data-service="Utility Connection">
+              <i class="fas fa-plug"></i>
+              <h3>Utility Connection</h3>
+            </div>
+            <div class="service-card" data-service="Vehicle Registration">
+              <i class="fas fa-car"></i>
+              <h3>Vehicle Registration</h3>
+            </div>
+            <div class="service-card" data-service="Park Rental">
+              <i class="fas fa-tree"></i>
+              <h3>Park Rental</h3>
+            </div>
+            <div class="service-card" data-service="School Programs">
+              <i class="fas fa-graduation-cap"></i>
+              <h3>School Programs</h3>
+            </div>
           </div>
           <div class="form-actions">
-            <button type="button" class="action-btn btn-primary next-step" data-next="step2">Continue</button>
+            <button type="button" class="action-btn btn-primary next-step" data-next="step2">Continue <i class="fas fa-arrow-right"></i></button>
           </div>
         </div>
 
-        <!-- Step 2 -->
+        <!-- Step 2: User Details -->
         <div class="form-section" id="step2">
           <h2>Enter Your Details</h2>
-          <div class="form-row"><label for="fullname">Full Name</label><input type="text" id="fullname" name="fullname" required></div>
-          <div class="form-row"><label for="contact">Contact Number</label><input type="tel" id="contact" name="contact" required></div>
-          <div class="form-row"><label for="email">Email Address</label><input type="email" id="email" name="email" required></div>
-          <div class="form-row"><label for="address">Address</label><textarea id="address" name="address" rows="3" required></textarea></div>
+          <div class="form-grid">
+            <div class="form-row">
+              <label for="fullname">Full Name</label>
+              <input type="text" id="fullname" name="fullname" required>
+            </div>
+            <div class="form-row">
+              <label for="contact">Contact Number</label>
+              <input type="tel" id="contact" name="contact" required>
+            </div>
+            <div class="form-row">
+              <label for="email">Email Address</label>
+              <input type="email" id="email" name="email" required>
+            </div>
+            <div class="form-row">
+              <label for="dob">Date of Birth</label>
+              <input type="date" id="dob" name="dob" required>
+            </div>
+          </div>
+          <div class="form-row">
+            <label for="address">Full Address</label>
+            <textarea id="address" name="address" rows="3" required></textarea>
+          </div>
           <div class="form-actions">
-            <button type="button" class="action-btn secondary prev-step" data-prev="step1">Back</button>
-            <button type="button" class="action-btn btn-primary next-step" data-next="step3">Continue</button>
+            <button type="button" class="action-btn secondary prev-step" data-prev="step1"><i class="fas fa-arrow-left"></i> Back</button>
+            <button type="button" class="action-btn btn-primary next-step" data-next="step3">Continue <i class="fas fa-arrow-right"></i></button>
           </div>
         </div>
 
-        <!-- Step 3 -->
+        <!-- Step 3: Service-Specific Details -->
         <div class="form-section" id="step3">
-          <h2>Review & Submit</h2>
-          <div class="review-box">
-            <p><strong>Service:</strong> <span id="review-service"></span></p>
-            <p><strong>Name:</strong> <span id="review-name"></span></p>
-            <p><strong>Contact:</strong> <span id="review-contact"></span></p>
-            <p><strong>Email:</strong> <span id="review-email"></span></p>
-            <p><strong>Address:</strong> <span id="review-address"></span></p>
+          <h2>Service Details</h2>
+          <div id="service-specific-details">
+            <p class="service-info">Please provide additional information specific to your selected service.</p>
+            <div class="form-grid">
+              <div class="form-row">
+                <label for="details1">Detail Field 1</label>
+                <input type="text" id="details1" name="details1" required>
+              </div>
+              <div class="form-row">
+                <label for="details2">Detail Field 2</label>
+                <input type="text" id="details2" name="details2" required>
+              </div>
+              <div class="form-row">
+                <label for="details3">Detail Field 3</label>
+                <select id="details3" name="details3" required>
+                  <option value="">Select an option</option>
+                  <option value="option1">Option 1</option>
+                  <option value="option2">Option 2</option>
+                  <option value="option3">Option 3</option>
+                </select>
+              </div>
+              <div class="form-row">
+                <label for="details4">Detail Field 4</label>
+                <input type="text" id="details4" name="details4" required>
+              </div>
+            </div>
+            <div class="form-row">
+              <label for="additionalInfo">Additional Information</label>
+              <textarea id="additionalInfo" name="additionalInfo" rows="3"></textarea>
+            </div>
           </div>
           <div class="form-actions">
-            <button type="button" class="action-btn secondary prev-step" data-prev="step2">Back</button>
-            <button type="submit" class="action-btn btn-primary">Submit</button>
+            <button type="button" class="action-btn secondary prev-step" data-prev="step2"><i class="fas fa-arrow-left"></i> Back</button>
+            <button type="button" class="action-btn btn-primary next-step" data-next="step4">Continue <i class="fas fa-arrow-right"></i></button>
+          </div>
+        </div>
+
+        <!-- Step 4: Payment -->
+        <div class="form-section" id="step4">
+          <h2>Payment Information</h2>
+          <div class="payment-methods">
+            <div class="payment-method" data-method="credit">
+              <i class="fas fa-credit-card"></i>
+              <div>Credit Card</div>
+            </div>
+            <div class="payment-method" data-method="paypal">
+              <i class="fab fa-paypal"></i>
+              <div>PayPal</div>
+            </div>
+            <div class="payment-method" data-method="bank">
+              <i class="fas fa-university"></i>
+              <div>Bank Transfer</div>
+            </div>
+          </div>
+          
+          <div class="card-form" id="creditCardForm">
+            <div class="card-images">
+              <img src="https://upload.wikimedia.org/wikipedia/commons/0/04/Visa.svg" alt="Visa">
+              <img src="https://upload.wikimedia.org/wikipedia/commons/2/2a/Mastercard-logo.svg" alt="Mastercard">
+              <img src="https://upload.wikimedia.org/wikipedia/commons/b/b7/American_Express_logo_%282018%29.svg" alt="Amex">
+            </div>
+            <div class="form-grid">
+              <div class="form-row">
+                <label for="cardName">Name on Card</label>
+                <input type="text" id="cardName" name="cardName" placeholder="e.g. John Doe" required>
+              </div>
+              <div class="form-row">
+                <label for="cardNumber">Card Number</label>
+                <input type="text" id="cardNumber" name="cardNumber" placeholder="1234 5678 9012 3456" required>
+              </div>
+              <div class="form-row">
+                <label for="expiry">Expiry Date</label>
+                <input type="text" id="expiry" name="expiry" placeholder="MM/YY" required>
+              </div>
+              <div class="form-row">
+                <label for="cvv">CVV</label>
+                <input type="text" id="cvv" name="cvv" placeholder="123" required>
+              </div>
+            </div>
+          </div>
+          
+          <div class="form-actions">
+            <button type="button" class="action-btn secondary prev-step" data-prev="step3"><i class="fas fa-arrow-left"></i> Back</button>
+            <button type="button" class="action-btn btn-primary next-step" data-next="step5">Continue <i class="fas fa-arrow-right"></i></button>
+          </div>
+        </div>
+
+        <!-- Step 5: Review & Submit -->
+        <div class="form-section" id="step5">
+          <h2>Review & Submit</h2>
+          <div class="review-box">
+            <p><strong>Service:</strong> <span id="review-service">Not selected</span></p>
+            <p><strong>Name:</strong> <span id="review-name">Not provided</span></p>
+            <p><strong>Contact:</strong> <span id="review-contact">Not provided</span></p>
+            <p><strong>Email:</strong> <span id="review-email">Not provided</span></p>
+            <p><strong>Address:</strong> <span id="review-address">Not provided</span></p>
+            <p><strong>Payment Method:</strong> <span id="review-payment">Not selected</span></p>
+            <p><strong>Total Fee:</strong> <span id="review-fee">₱0.00</span></p>
+          </div>
+          <div class="form-actions">
+            <button type="button" class="action-btn secondary prev-step" data-prev="step4"><i class="fas fa-arrow-left"></i> Back</button>
+            <button type="submit" class="action-btn btn-gold"><i class="fas fa-paper-plane"></i> Submit Application</button>
           </div>
         </div>
       </form>
+      
+      <!-- Survey Section -->
+      <div class="survey-section" id="survey">
+        <h2>How was your experience?</h2>
+        <p>Please take a moment to rate your experience with ServeEase</p>
+        
+        <div class="rating" id="rating">
+          <i class="far fa-star" data-value="1"></i>
+          <i class="far fa-star" data-value="2"></i>
+          <i class="far fa-star" data-value="3"></i>
+          <i class="far fa-star" data-value="4"></i>
+          <i class="far fa-star" data-value="5"></i>
+        </div>
+        
+        <div class="comments">
+          <textarea id="feedback" placeholder="Any additional comments or suggestions..."></textarea>
+        </div>
+        
+        <div class="form-actions">
+          <button type="button" class="action-btn secondary" id="skip-survey">Skip Survey</button>
+          <button type="button" class="action-btn btn-primary" id="submit-survey">Submit Feedback</button>
+        </div>
+      </div>
+      
+      <!-- Confirmation Section -->
+      <div class="confirmation" id="confirmation">
+        <i class="fas fa-check-circle"></i>
+        <h2>Application Submitted Successfully!</h2>
+        <p>Thank you for using ServeEase. Your service request has been received and is being processed. You will receive a confirmation email with your application details shortly.</p>
+        <div class="form-actions">
+          <button type="button" class="action-btn btn-primary" id="new-application"><i class="fas fa-plus"></i> New Application</button>
+          <button type="button" class="action-btn secondary" id="dashboard"><i class="fas fa-tachometer-alt"></i> Go to Dashboard</button>
+        </div>
+      </div>
     </section>
   </main>
 
   <footer class="footer">
-    <div class="footer-content">
-      <div class="footer-section"><h3>Quick Links</h3><ul><li><a href="index.html">Home</a></li><li><a href="services.html">Services</a></li></ul></div>
-      <div class="footer-section"><h3>Contact</h3><p>📧 services@serveease.ph</p><p>📞 +63 012 3456 7890</p></div>
+    <div class="container">
+      <div class="footer-content">
+        <div class="footer-section">
+          <h3>Quick Links</h3>
+          <ul>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="services.html">All Services</a></li>
+            <li><a href="signin.html">Application Status</a></li>
+            <li><a href="faqpage.html">FAQs</a></li>
+          </ul>
+        </div>
+        <div class="footer-section">
+          <h3>Contact Us</h3>
+          <p><i class="fas fa-envelope"></i> services@serveease.ph</p>
+          <p><i class="fas fa-phone"></i> +63 012 3456 7890</p>
+          <p><i class="fas fa-map-marker-alt"></i> 123 Gov Plaza, Manila, Philippines</p>
+        </div>
+        <div class="footer-section">
+          <h3>Business Hours</h3>
+          <p><i class="fas fa-clock"></i> Monday-Friday: 8:00 AM - 5:00 PM</p>
+          <p><i class="fas fa-clock"></i> Saturday: 9:00 AM - 1:00 PM</p>
+          <p><i class="fas fa-clock"></i> Sunday: Closed</p>
+        </div>
+      </div>
+      <div class="copyright">
+        &copy; 2023 ServeEase - Government Service Portal. All rights reserved.
+      </div>
     </div>
   </footer>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      // Service selection
+      const serviceCards = document.querySelectorAll('.service-card');
+      let selectedService = null;
+      
+      serviceCards.forEach(card => {
+        card.addEventListener('click', () => {
+          // Remove selected class from all cards
+          serviceCards.forEach(c => c.classList.remove('selected'));
+          // Add selected class to clicked card
+          card.classList.add('selected');
+          selectedService = card.getAttribute('data-service');
+          
+          // Update fee in review section
+          const feeElement = document.getElementById('review-fee');
+          const fee = calculateFee(selectedService);
+          feeElement.textContent = `₱${fee.toFixed(2)}`;
+        });
+      });
+      
+      // Step navigation
+      const steps = document.querySelectorAll('.step');
+      const formSections = document.querySelectorAll('.form-section');
+      
+      document.querySelectorAll('.next-step').forEach(button => {
+        button.addEventListener('click', function() {
+          const nextStep = this.getAttribute('data-next');
+          navigateToStep(nextStep);
+        });
+      });
+      
+      document.querySelectorAll('.prev-step').forEach(button => {
+        button.addEventListener('click', function() {
+          const prevStep = this.getAttribute('data-prev');
+          navigateToStep(prevStep);
+        });
+      });
+      
+      function navigateToStep(stepId) {
+        // Hide all form sections
+        formSections.forEach(section => {
+          section.classList.remove('active');
+        });
+        
+        // Show the target step
+        document.getElementById(stepId).classList.add('active');
+        
+        // Update step indicator
+        const stepNumber = stepId.replace('step', '');
+        steps.forEach((step, index) => {
+          step.classList.remove('active');
+          if (index < stepNumber - 1) {
+            step.classList.add('completed');
+          }
+          if (index == stepNumber - 1) {
+            step.classList.add('active');
+          }
+        });
+        
+        // Update review section in step 5
+        if (stepId === 'step5') {
+          updateReviewSection();
+        }
+      }
+      
+      // Payment method selection
+      const paymentMethods = document.querySelectorAll('.payment-method');
+      const creditCardForm = document.getElementById('creditCardForm');
+      let selectedPaymentMethod = null;
+      
+      paymentMethods.forEach(method => {
+        method.addEventListener('click', () => {
+          // Remove selected class from all methods
+          paymentMethods.forEach(m => m.classList.remove('selected'));
+          // Add selected class to clicked method
+          method.classList.add('selected');
+          selectedPaymentMethod = method.getAttribute('data-method');
+          
+          // Show credit card form if credit card selected
+          if (selectedPaymentMethod === 'credit') {
+            creditCardForm.classList.add('active');
+          } else {
+            creditCardForm.classList.remove('active');
+          }
+        });
+      });
+      
+      // Form submission
+      const registrationForm = document.getElementById('registrationForm');
+      const surveySection = document.getElementById('survey');
+      const confirmationSection = document.getElementById('confirmation');
+      
+      registrationForm.addEventListener('submit', function(e) {
+        e.preventDefault();
+        
+        // Show survey after form submission
+        this.style.display = 'none';
+        surveySection.classList.add('active');
+        
+        // Update step indicator to show completion
+        steps[4].classList.add('completed');
+      });
+      
+      // Survey submission
+      const stars = document.querySelectorAll('#rating i');
+      let rating = 0;
+      
+      stars.forEach(star => {
+        star.addEventListener('click', function() {
+          const value = parseInt(this.getAttribute('data-value'));
+          rating = value;
+          
+          // Update star display
+          stars.forEach((s, index) => {
+            if (index < value) {
+              s.classList.remove('far');
+              s.classList.add('fas', 'selected');
+            } else {
+              s.classList.remove('fas', 'selected');
+              s.classList.add('far');
+            }
+          });
+        });
+      });
+      
+      document.getElementById('submit-survey').addEventListener('click', function() {
+        // Get feedback text
+        const feedback = document.getElementById('feedback').value;
+        
+        // Hide survey and show confirmation
+        surveySection.classList.remove('active');
+        confirmationSection.classList.add('active');
+      });
+      
+      document.getElementById('skip-survey').addEventListener('click', function() {
+        // Hide survey and show confirmation
+        surveySection.classList.remove('active');
+        confirmationSection.classList.add('active');
+      });
+      
+      // Confirmation actions
+      document.getElementById('new-application').addEventListener('click', function() {
+        // Reset form and go to step 1
+        registrationForm.reset();
+        serviceCards.forEach(card => card.classList.remove('selected'));
+        paymentMethods.forEach(method => method.classList.remove('selected'));
+        creditCardForm.classList.remove('active');
+        stars.forEach(star => {
+          star.classList.remove('fas', 'selected');
+          star.classList.add('far');
+        });
+        
+        // Reset step indicator
+        steps.forEach(step => {
+          step.classList.remove('active', 'completed');
+        });
+        steps[0].classList.add('active');
+        
+        // Show form and hide confirmation
+        confirmationSection.classList.remove('active');
+        registrationForm.style.display = 'block';
+        navigateToStep('step1');
+      });
+      
+      document.getElementById('dashboard').addEventListener('click', function() {
+        alert('Redirecting to user dashboard...');
+        // In a real app, this would redirect to the dashboard page
+      });
+      
+      // Helper functions
+      function calculateFee(service) {
+        // Simple fee calculation based on service
+        const fees = {
+          'Building Permit': 1500,
+          'Health Services': 200,
+          'ID Card Application': 300,
+          'Utility Connection': 1200,
+          'Vehicle Registration': 1800,
+          'Park Rental': 650,
+          'School Programs': 450
+        };
+        return fees[service] || 0;
+      }
+      
+      function updateReviewSection() {
+        if (selectedService) {
+          document.getElementById('review-service').textContent = selectedService;
+          document.getElementById('review-fee').textContent = `₱${calculateFee(selectedService).toFixed(2)}`;
+        }
+        
+        if (selectedPaymentMethod) {
+          document.getElementById('review-payment').textContent = 
+            selectedPaymentMethod.charAt(0).toUpperCase() + selectedPaymentMethod.slice(1);
+        }
+        
+        document.getElementById('review-name').textContent = document.getElementById('fullname').value || 'Not provided';
+        document.getElementById('review-contact').textContent = document.getElementById('contact').value || 'Not provided';
+        document.getElementById('review-email').textContent = document.getElementById('email').value || 'Not provided';
+        document.getElementById('review-address').textContent = document.getElementById('address').value || 'Not provided';
+      }
+    });
+  </script>
 </body>
 </html>
