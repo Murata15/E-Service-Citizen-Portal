@@ -662,3 +662,14 @@ html {
   padding: 1.5rem;
   border-radius: 5px;
 }
+
+.btn-login{
+  background-color: #1B4543; 
+  color: #fff;
+  border: none;
+  padding: 10px 20px;
+  font-size: 16px;
+  border-radius: 6px;
+  cursor: pointer;
+  font-family: Jost;
+}
