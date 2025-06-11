@@ -58,7 +58,8 @@ body.bgimage {
 
 .formbox {
     background-color: var(--white);
-    max-width: 400px;
+    min-width: 400px;
+    max-width: 100%;
     margin: 50px auto;
     padding: 40px;
     border-radius: 12px;
@@ -92,7 +93,7 @@ form input[type="password"] {
 
 .regisbutton {
     background-color: #F0BE6F;
-    color: white;
+    color: var(--primary);
     padding: 12px 24px;
     border: none;
     border-radius: 4px;
